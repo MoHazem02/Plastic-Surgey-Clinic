@@ -4,39 +4,61 @@ from django.db import IntegrityError
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-# from .models import User, Doctor, Patient
-from datetime import datetime 
+from .models import User, Doctor, Patient, Nurse
 # Create your views here.
 
 def index(request):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("login"))
+        return HttpResponseRedirect(reverse("staff_login"))
     return render(request, "index.html")
 
 
-def login_view(request):
+def staff_login(request):
     if request.method == "POST":
         # Attempt to sign user in
-        username = request.POST["uname"]
+        username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
 
         # Check if authentication successful
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse("index"))
+            if user.role == 'ADMIN':
+                return HttpResponseRedirect(reverse("admin"))
+            elif user.role == 'DOCTOR':
+                return HttpResponseRedirect(reverse("doctor"))
+            else:
+                return HttpResponseRedirect(reverse("nurse"))
         else:
-            return render(request, "patient-login.html", {
+            return render(request, "staff-login.html", {
                 "message": "Invalid username and/or password."
             })
     else:
-        return render(request, "patient-login.html")
+        return render(request, "staff-login.html")
+    
+# def login_view(request):
+#     if request.method == "POST":
+#         # Attempt to sign user in
+#         username = request.POST["uname"]
+#         password = request.POST["password"]
+#         user = authenticate(request, username=username, password=password)
+
+#         # Check if authentication successful
+#         if user is not None:
+#             login(request, user)
+#             return HttpResponseRedirect(reverse("index"))
+#         else:
+#             return render(request, "patient-login.html", {
+#                 "message": "Invalid username and/or password."
+#             })
+#     else:
+#         return render(request, "index.html")
     
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
 
-
+# Although there is no register page, I think you may find this code useful (almost same lines will be recalled)
 def register(request):
     if request.method == "POST":
         fName = request.POST["fname"]
@@ -65,3 +87,24 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "register.html")
+    
+@login_required    
+def doctor_view(request):
+    if request.method == "POST":
+        pass
+    else:
+        pass
+    
+@login_required    
+def nurse_view(request):
+    if request.method == "POST":
+        pass
+    else:
+        return render(request, "doctor.html")
+
+@login_required
+def admin(request):
+    if request.method == "POST":
+        pass
+    else:
+        pass
