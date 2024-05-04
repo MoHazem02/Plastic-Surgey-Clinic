@@ -1,0 +1,71 @@
+.blue-container {
+    background-color: #e0e9f1; /* Adjust the color as needed */
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px; /* Adjust spacing from the section heading */
+  }
+  
+  .appointments-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .appointments-table th,
+  .appointments-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .appointments-table th {
+    background-color: #4e7cad; /* Adjust the color as needed */
+    color: #fff;
+  }
+  
+  .appointments-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .appointments-table tbody tr:hover {
+    background-color: #ddd;
+  }
+  
+#appoint {
+padding-right: 7000px;
+}
+.appointment-form {
+    width: 100%;
+    background: #fff;
+    min-height: 650px;
+    min-width: 900px;
+    box-shadow: 0 0 50px -22px rgba(0,0,0,0.3);
+    padding-top: 135px;
+    
+  }
+
+  .appointment-form h3 {
+    float: left;
+    margin: 0;
+    background: linear-gradient(to right, #39b49a 0%, #1d86df 100%);
+    width: 100%;
+    color: #fff;
+    padding: 15px 25px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .appointment-form .form {
+    float: center;
+    width: 100%;
+  }
+  .appointment-form .form form {
+    float: left;
+    width: 100%;
+    margin: 0;
+  }
+  .appointment-form .form form fieldset {
+    float: left;
+    width: 100%;
+  }
+  #footer{
+    background-color: #ecf1f6;
+  }
