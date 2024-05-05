@@ -9,7 +9,7 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<link rel="stylesheet" href="../static/staff-login.css">
+	<link rel="stylesheet" href="../static/css/staff-login.css">
 
 	</head>
 	<body>
@@ -27,8 +27,7 @@
 		      		<span class="fa fa-user-o"></span>
 		      	</div>
 		      	<h3 class="text-center mb-4">Sign in to your account</h3>
-						<form action="{% url 'staff_login' %}" method="post" class="login-form">
-							{% csrf_token %}
+						<form action="{% url 'login' %}" method="post" class="login-form">
 		      		<div class="form-group">
 		      			<input type="text" class="form-control rounded-left" placeholder="Username" name="username" required>
 		      		</div>

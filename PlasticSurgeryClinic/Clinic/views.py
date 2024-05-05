@@ -9,11 +9,11 @@ from .models import User, Doctor, Patient, Nurse
 
 def index(request):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("staff_login"))
+        return HttpResponseRedirect(reverse("login"))
     return render(request, "index.html")
 
 
-def staff_login(request):
+def login(request):
     if request.method == "POST":
         # Attempt to sign user in
         username = request.POST["username"]
@@ -27,32 +27,16 @@ def staff_login(request):
                 return HttpResponseRedirect(reverse("admin"))
             elif user.role == 'DOCTOR':
                 return HttpResponseRedirect(reverse("doctor"))
-            else:
+            elif user.role == 'DOCTOR':
                 return HttpResponseRedirect(reverse("nurse"))
+            else:
+                return HttpResponseRedirect(reverse("index"))
         else:
-            return render(request, "staff-login.html", {
+            return render(request, "login.html", {
                 "message": "Invalid username and/or password."
             })
     else:
-        return render(request, "staff-login.html")
-    
-# def login_view(request):
-#     if request.method == "POST":
-#         # Attempt to sign user in
-#         username = request.POST["uname"]
-#         password = request.POST["password"]
-#         user = authenticate(request, username=username, password=password)
-
-#         # Check if authentication successful
-#         if user is not None:
-#             login(request, user)
-#             return HttpResponseRedirect(reverse("index"))
-#         else:
-#             return render(request, "patient-login.html", {
-#                 "message": "Invalid username and/or password."
-#             })
-#     else:
-#         return render(request, "index.html")
+        return render(request, "login.html")
     
 def logout_view(request):
     logout(request)
