@@ -13,7 +13,7 @@ def index(request):
     return render(request, "index.html")
 
 
-def login(request):
+def login_view(request):
     if request.method == "POST":
         # Attempt to sign user in
         username = request.POST["username"]
@@ -27,7 +27,7 @@ def login(request):
                 return HttpResponseRedirect(reverse("admin"))
             elif user.role == 'DOCTOR':
                 return HttpResponseRedirect(reverse("doctor"))
-            elif user.role == 'DOCTOR':
+            elif user.role == 'NURSE':
                 return HttpResponseRedirect(reverse("nurse"))
             else:
                 return HttpResponseRedirect(reverse("index"))
@@ -84,7 +84,7 @@ def nurse_view(request):
     if request.method == "POST":
         pass
     else:
-        return render(request, "doctor.html")
+        return render(request, "nurseportal.html")
 
 @login_required
 def admin(request):
