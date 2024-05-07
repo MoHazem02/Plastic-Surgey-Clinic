@@ -34,3 +34,4 @@ class Patient(User):
     history = models.CharField(max_length=255, null=True, blank=True)
     phone_number = models.CharField(max_length=11)
 
+

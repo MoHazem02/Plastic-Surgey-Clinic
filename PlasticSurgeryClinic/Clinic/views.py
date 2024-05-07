@@ -8,8 +8,8 @@ from .models import User, Doctor, Patient, Nurse
 # Create your views here.
 
 def index(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("login"))
+    # if not request.user.is_authenticated:
+    #     return HttpResponseRedirect(reverse("login"))
     return render(request, "index.html")
 
 
@@ -91,4 +91,4 @@ def admin(request):
     if request.method == "POST":
         pass
     else:
-        pass
+        return render(request, "doctor.html")
