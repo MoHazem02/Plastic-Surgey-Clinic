@@ -8,8 +8,8 @@ from .models import User, Doctor, Patient, Nurse, Appointment
 # Create your views here.
 
 def index(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("login"))
+    # if not request.user.is_authenticated:
+    #     return HttpResponseRedirect(reverse("login"))
     return render(request, "index.html")
 
 
@@ -42,32 +42,26 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
 
-# Although there is no register page, I think you may find this code useful (almost same lines will be recalled)
-def register(request):
+def register_patient(request):
     if request.method == "POST":
-        fName = request.POST["fname"]
-        LName = request.POST["lname"]
+        fName = request.POST["Fname"]
+        LName = request.POST["Lname"]
         username = request.POST["uname"]
-        email = request.POST["email"]
-        gender = request.POST["gender"]
-
-        # Ensure password matches confirmation
-        password = request.POST["password"]
-        confirmation = request.POST["confirmation"]
-        if password != confirmation:
-            return render(request, "register.html", {
-                "message": "Passwords must match."
-            })
+        email = request.POST["mail"]
+        password = request.POST["patient_password"]
+        gender = request.POST["sex"]
+        age = request.POST["age"]
+        phone = request.POST["phone_number"]
 
         # Attempt to create new user
-        # try:
-        #     patient = Patient.objects.create_user(role="PATIENT", first_name=fName, last_name=LName, username= username, password=password, email=email, sex = "M" if gender == "Male" else "F")
-        #     patient.save()
-        # except IntegrityError:
-        #     return render(request, "register.html", {
-        #         "message": "Username already taken."
-        #     })
-        # login(request, patient)
+        try:
+            patient = Patient.objects.create_user(role="PATIENT", first_name=fName, last_name=LName, username= username, password=password, email=email, 
+                                                  sex = "M" if gender == "Male" else "F", age=age, phone_number=phone)
+            patient.save()
+        except IntegrityError:
+            return render(request, "register.html", {
+                "message": "Username already taken."
+            })
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "register.html")
@@ -100,4 +94,4 @@ def admin(request):
     if request.method == "POST":
         pass
     else:
-        pass
+        return render(request, "doctor.html")
