@@ -1,81 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-  	<title>Patient Sign Up</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% extends "layout.html" %}
+{% block body %}
+<div id="View" class="container" style="position: absolute; top: 20%;">
+	<div id="appointmentbooking" class="appointment-form">
+		<h3><span>+</span> Register New Patient</h3>
+		<div class="form">
+			<form action="{% url 'register' %}" method="post">
+				{% csrf_token %}
+				<fieldset>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 select-section">
+						<div class="row">
+							<div class="form-group">
+								<input type="text" id="name" placeholder="First Name" name="Fname"/>
+							</div>
+							<div class="form-group">
+								<input type="text" id="name" placeholder="Last Name" name="Lname"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="row">
+							<div class="form-group">
+								<input type="text" placeholder="Email" id="email" name="mail"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="row">
+							<div class="form-group">
+								<input type="text" placeholder="Username" id="email" name="uname"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="row">
+							<div class="form-group">
+								<input type="password" placeholder="Password" id="Patient ID" name="patient_password"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="row">
+							<div class="form-group">
+								<input type="text" placeholder="Phone Number" id="Patient ID" name="phone_number"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 select-section">
+						<div class="row">
+							<div class="form-group">
+								<select class="form-control" name="sex">
+									<option>Sex</option>
+									<option>Male</option>
+									<option>Female</option>
 
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+								</select>
+							</div>
+							<div class="form-group">
+								<input type="number" placeholder="Age" id="Patient ID" name="age"/>
+							</div>
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-	<link rel="stylesheet" href="../static/patient-login.css">
 
-	</head>
-	<body class="img js-fullheight" style="background-image: url(../static/patient-bg.jpg);">
-	<section class="ftco-section">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Create an Account</h2>
-				</div>
-			</div>
-			<div class="row justify-content-center">
-				<div class="col-md-6 col-lg-4">
-					<div class="login-wrap p-0">
-		      	<form action="{% url 'register' %}" method="post" class="signin-form">
-                    {% csrf_token %}
-		      		<div class="form-group">
-		      			<input type="text" class="form-control" placeholder="First Name" name="fname" required>
-		      		</div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Last Name" name="lname" required>
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control" name="gender" id="selectBox">
-                            <option style="color: black;" value="Male">Male</option>
-                            <option style="color: black;" value="Female">Female</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Username" name="uname" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Email" name="email" required>
-                    </div>
-	            <div class="form-group">
-	              <input id="password-field" type="password" class="form-control" placeholder="Password" name="password" required>
-	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-	            </div>
-                <div class="form-group">
-                    <input id="password-field" type="password" class="form-control" placeholder="Confirm Password" name="confirmation" required>
-                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                  </div>
-	            <div class="form-group">
-	            	<button type="submit" class="form-control btn btn-primary submit px-3">Sign Up</button>
-	            </div>
-	            <div class="form-group d-md-flex">
-	            	<div class="w-50">
-		            	<label class="checkbox-wrap checkbox-primary">Remember Me
-									  <input type="checkbox" checked>
-									  <span class="checkmark"></span>
-									</label>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="row">
+									<div class="form-group">
+										<div class="center" style="position: absolute; align-content: center;"><button type="submit">Submit</button></div>
+									</div>
 								</div>
-								<div class="w-50 text-md-right">
-									<a href="staff" style="color: #fff">Hospital Staff?</a>
-								</div>
-	            </div>
-	          </form>
-	          <p class="w-100 text-center">&mdash; Or Sign in &mdash;</p>
-	          <div class="social d-flex text-center">
-	          	<a href="login" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Login to existing account</a>
-	          </div>
-		      </div>
-				</div>
-			</div>
+							</div>
+				</fieldset>
+			</form>
 		</div>
-	</section>
+	</div>
 
-	</body>
-</html>
+</div>
 
+
+{% endblock %}
