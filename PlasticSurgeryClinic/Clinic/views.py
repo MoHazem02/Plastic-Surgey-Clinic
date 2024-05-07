@@ -29,6 +29,8 @@ def login_view(request):
                 return HttpResponseRedirect(reverse("doctor"))
             elif user.role == 'NURSE':
                 return HttpResponseRedirect(reverse("nurse"))
+            elif user.role == 'PATIENT':
+                return HttpResponseRedirect(reverse("patient"))
             else:
                 return HttpResponseRedirect(reverse("index"))
         else:
@@ -62,10 +64,25 @@ def register_patient(request):
             return render(request, "register.html", {
                 "message": "Username already taken."
             })
-        return HttpResponseRedirect(reverse("index"))
-    else:
-        return render(request, "register.html")
-    
+    return render(request, "register.html")
+
+@login_required
+def patient_view(request):
+    if request.method == "POST":
+        time = request.POST.get('time')
+        day = request.POST.get('day')
+        doctor = Doctor.objects.get(pk = request.POST.get('doctor'))  
+        patient = Patient.objects.get(id = request.POST.get('id'))
+        
+        app = Appointment.objects.create(patient=patient, time=time, day=day, doctor=doctor)
+        app.save()
+
+    Doctors = Doctor.objects.all()
+    dict = {
+        'doctors': Doctors
+    }
+    return render(request, "patientportal.html", dict)
+
 @login_required    
 def doctor_view(request):
     if request.method == "POST":
