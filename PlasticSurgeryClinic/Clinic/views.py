@@ -4,7 +4,7 @@ from django.db import IntegrityError
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from .models import User, Doctor, Patient, Nurse
+from .models import User, Doctor, Patient, Nurse, Appointment
 # Create your views here.
 
 def index(request):
@@ -75,16 +75,25 @@ def register(request):
 @login_required    
 def doctor_view(request):
     if request.method == "POST":
-        pass
-    else:
-        pass
+        return render(request, "nurseportal.html")
+    return render(request, "nurseportal.html")
     
 @login_required    
 def nurse_view(request):
     if request.method == "POST":
-        pass
-    else:
-        return render(request, "nurseportal.html")
+        time = request.POST.get('time')
+        day = request.POST.get('day')
+        doctor = Doctor.objects.get(pk = request.POST.get('doctor'))  
+        patient = Patient.objects.get(id = request.POST.get('id'))
+        
+        app = Appointment.objects.create(patient=patient, time=time, day=day, doctor=doctor)
+        app.save()
+
+    Doctors = Doctor.objects.all()
+    dict = {
+        'doctors': Doctors
+    }
+    return render(request, "nurseportal.html", dict)
 
 @login_required
 def admin(request):

@@ -209,34 +209,27 @@
     <div id="appointmentbooking" class="appointment-form">
        <h3><span>+</span> Book Appointment</h3>
        <div class="form">
-          <form action="">
+          <form method = "post" action = "{%url 'nurse' %}">
             {% csrf_token %} 
              <fieldset>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                    <div class="row">
                       <div class="form-group">
-                         <input type="text" id="name" placeholder="Patient Name"  />
+                         <input type="text" id="name" placeholder="Patient Name" name = "name" />
                       </div>
                    </div>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                   <div class="row">
-                      <div class="form-group">
-                         <input type="email" placeholder="Email Address" id="email" />
-                      </div>
-                   </div>
-                </div>
-                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="row">
-                       <div class="form-group">
-                          <input type="email" placeholder="Patient Id" id="Patient ID" />
-                       </div>
-                    </div>
-                </div>
+                  <div class="row">
+                     <div class="form-group">
+                        <input type="text" id="name" placeholder="Patient ID" name = "id" />
+                     </div>
+                  </div>
+               </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 select-section">
                    <div class="row">
                       <div class="form-group">
-                         <select class="form-control">
+                         <select class="form-control" name = "day">
                             <option>Day</option>
                             <option>Sunday</option>
                             <option>Monday</option>
@@ -245,12 +238,10 @@
                             <option>Thursday</option>
                             <option>Saturday</option>
                             <option>Friday</option>
-
-
                          </select>
                       </div>
                       <div class="form-group">
-                        <select class="form-control" id="timeSelect">
+                        <select class="form-control" id="timeSelect" name="time">
                             <option>Time</option>
                         </select>
                     </div>
@@ -258,10 +249,10 @@
                     <script>
                         var select = document.getElementById("timeSelect");
                     
-                        for (var hour = 1; hour <= 12; hour++) {
+                        for (var hour = 9; hour <= 12; hour++) {
                             select.options[select.options.length] = new Option(hour + ":00 AM", hour + ":00 AM");
                         }
-                        for (var hour = 1; hour <= 12; hour++) {
+                        for (var hour = 1; hour <= 9; hour++) {
                             select.options[select.options.length] = new Option(hour + ":00 PM", hour + ":00 PM");
                         }
                     </script>
@@ -269,10 +260,11 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                    <div class="row">
                       <div class="form-group">
-                         <select class="form-control">
+                         <select class="form-control" name="doctor">
                             <option>Doctor Name</option>
-                            <option>Dr.Amr Safwat</option>
-                            <option>Mr. Mohamed Hazem</option>
+                            {% for item in doctors %}
+                            <option value = "{{item.id}}"> Dr. {{ item.first_name }} {{ item.last_name }}</option>
+                            {% endfor %}
                          </select>
                       </div>
                    </div>

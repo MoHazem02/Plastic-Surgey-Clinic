@@ -34,3 +34,9 @@ class Patient(User):
     history = models.CharField(max_length=255, null=True, blank=True)
     phone_number = models.CharField(max_length=11)
 
+class Appointment(models.Model):
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, null=True)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, null=True)
+    day = models.CharField(max_length=10, default='Thursday')
+    time = models.CharField(max_length=10, default='10:00')
+    remarks = models.CharField(max_length=255, null=True, blank=True)
