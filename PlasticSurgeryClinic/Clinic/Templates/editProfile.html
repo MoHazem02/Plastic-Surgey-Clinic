@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="../static/css/editProfileStyle.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Profile</h1>
+        <div class="profile-picture-container">
+            <img id="profile_picture_preview" src="../static/images/patient.jpg" alt="Profile Picture" class="profile-picture">
+        </div>
+        <form id="profileForm" action="#" method="POST" enctype="multipart/form-data">
+            <table class="profile-table">
+                <tr  class="even">
+                    <td>Profile Picture</td>
+                    <td><input type="text" id="first_name" name="profile_pic" value="URL"></td>
+                </tr>
+                <tr  class="even">
+                    <td>First Name</td>
+                    <td><input type="text" id="first_name" name="first_name" value="Yasser"></td>
+                </tr>
+                <tr  class="odd">
+                    <td>Last Name</td>
+                    <td><input type="text" id="last_name" name="last_name" value="Yasser"></td>
+                </tr>
+                <tr class="even">
+                    <td>Phone Number</td>
+                    <td><input type="tel" id="phone" name="phone" value="01234567895"></td>
+                </tr>
+                <tr class="odd">
+                    <td>Age</td>
+                    <td><input type="number" id="age" name="age" value="22"></td>
+                </tr>
+                <tr class="even">
+                    <td>Address</td>
+                    <td><input type="text" id="address" name="address" value="123 Street, City" ></td>
+                </tr>
+                <tr class="odd">
+                    <td>Nationality</td>
+                    <td>
+                        <select id="nationality" name="nationality" >
+                            <option value="Egypt">Egypt</option>
+                            <option value="USA">USA</option>
+                            <option value="UK">UK</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Germany">Germany</option>
+                            <option value="France">France</option>
+                            <option value="Italy">Italy</option>
+                            <option value="Spain">Spain</option>
+                            <option value="Japan">Japan</option>
+                            <option value="South Korea">South Korea</option>
+                            <option value="China">China</option>
+                            <option value="India">India</option>
+                            <option value="Saudi Arabia">Saudi Arabia</option>
+                            <option value="United Arab Emirates">United Arab Emirates</option>
+                            <option value="Qatar">Qatar</option>
+                            <option value="Turkey">Turkey</option>
+                            <option value="Iran">Iran</option>
+                            <option value="Iraq">Iraq</option>
+                            <option value="Vatican City">Vatican City</option>
+                            <option value="Jordan">Jordan</option>
+                            <option value="Kuwait">Kuwait</option>
+                            <option value="Lebanon">Lebanon</option>
+                            <option value="Oman">Oman</option>
+                            <option value="Palestine">Palestine</option>
+                            <option value="Syria">Syria</option>
+                            <option value="Yemen">Yemen</option>
+                            <option value="Bahrain">Bahrain</option>
+                            <option value="Cyprus">Cyprus</option>
+                            <option value="Morocco">Morocco</option>
+                            <option value="Tunisia">Tunisia</option>
+                            <option value="Algeria">Algeria</option>
+                            <option value="Libya">Libya</option>
+                            <option value="Sudan">Sudan</option>
+                            <option value="Somalia">Somalia</option>
+                            <option value="Pakistan">Pakistan</option>
+                            <option value="Afghanistan">Afghanistan</option>
+                            <option value="Bangladesh">Bangladesh</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="even">
+                    <td>Email</td>
+                    <td><input type="email" id="email" name="email" value="example@example.com" ></td>
+                </tr>
+                </tr>
+            </table>
+            <button id="saveBtn" type="button">Update My Profile</button>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -8,8 +8,6 @@ from .models import User, Doctor, Patient, Nurse, Appointment
 # Create your views here.
 
 def index(request):
-    # if not request.user.is_authenticated:
-    #     return HttpResponseRedirect(reverse("login"))
     return render(request, "index.html")
 
 
@@ -29,10 +27,9 @@ def login_view(request):
                 return HttpResponseRedirect(reverse("doctor"))
             elif user.role == 'NURSE':
                 return HttpResponseRedirect(reverse("nurse"))
-            elif user.role == 'PATIENT':
-                return HttpResponseRedirect(reverse("patient"))
             else:
                 return HttpResponseRedirect(reverse("index"))
+
         else:
             return render(request, "login.html", {
                 "message": "Invalid username and/or password."
@@ -66,8 +63,9 @@ def register_patient(request):
             })
     return render(request, "register.html")
 
-@login_required
 def patient_view(request):
+    if not request.user.is_authenticated:
+        return render(request, "login.html")
     if request.method == "POST":
         time = request.POST.get('time')
         day = request.POST.get('day')
@@ -82,15 +80,17 @@ def patient_view(request):
         'doctors': Doctors
     }
     return render(request, "patientportal.html", dict)
-
-@login_required    
+    
 def doctor_view(request):
+    if not request.user.is_authenticated:
+        return render(request, "login.html")
     if request.method == "POST":
         return render(request, "nurseportal.html")
     return render(request, "nurseportal.html")
-    
-@login_required    
+        
 def nurse_view(request):
+    if not request.user.is_authenticated:
+        return render(request, "login.html")
     if request.method == "POST":
         time = request.POST.get('time')
         day = request.POST.get('day')
@@ -106,9 +106,17 @@ def nurse_view(request):
     }
     return render(request, "nurseportal.html", dict)
 
-@login_required
 def admin(request):
+    if not request.user.is_authenticated:
+        return render(request, "login.html")
     if request.method == "POST":
         pass
     else:
         return render(request, "doctor.html")
+    
+def edit_profile(request):
+    if not request.user.is_authenticated:
+        return render(request, "login.html")
+    if request.method == "POST":
+        pass
+    return render(request, "editProfile.html")
