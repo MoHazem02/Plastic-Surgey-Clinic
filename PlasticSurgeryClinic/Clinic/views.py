@@ -112,7 +112,7 @@ def admin(request):
     if request.method == "POST":
         pass
     else:
-        return render(request, "doctor.html")
+        return render(request, "Admin.html")
     
 def edit_profile(request):
     if not request.user.is_authenticated:
