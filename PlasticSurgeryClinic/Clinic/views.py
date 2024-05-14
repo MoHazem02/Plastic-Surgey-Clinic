@@ -4,7 +4,7 @@ from django.db import IntegrityError
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from .models import User, Doctor, Patient, Nurse, Appointment
+from .models import User, Doctor, Patient, Nurse, Appointment, Department
 # Create your views here.
 
 def index(request):
@@ -115,7 +115,7 @@ def admin(request):
     if request.method == "POST":
         pass
     else:
-        return render(request, "Admin.html")
+        return render(request, "admin.html")
     
 def edit_profile(request):
     if not request.user.is_authenticated:
@@ -123,3 +123,38 @@ def edit_profile(request):
     if request.method == "POST":
         pass
     return render(request, "editProfile.html")
+
+def doctors(request):
+    if request.method == "POST":
+        pass
+    else:
+        doctors = Doctor.objects.all()
+        return render(request, "admin_view_doctors.html", {"doctors": doctors})
+
+def add_staff(request):
+    if request.method == "POST":
+        fName = request.POST["fname"]
+        LName = request.POST["lname"]
+        username = request.POST["uname"]
+        email = request.POST["email"]
+        password = request.POST["password"]
+        profile_pic = request.POST["image_link"]
+        gender = request.POST["gender"]
+        department = Department.objects.get(pk=int(request.POST.get('dept')))
+        medicalDegree = request.POST.get('medicalDegree')
+        workingShift = request.POST.get('workingShift')
+        shiftOptions = {"Morning": 'M', "Evening": 'E', "Night": 'N'}
+        chosenShift = shiftOptions[workingShift]
+
+        # Attempt to create new user
+        try:
+            doctor = Doctor.objects.create_user(role="DOCTOR", first_name=fName, last_name=LName, username= username, password=password, email=email, 
+                                                  sex = "M" if gender == "Male" else "F", department=department, medical_degree=medicalDegree, working_shift=chosenShift, profile_picture=profile_pic)
+            doctor.save()
+        except IntegrityError:
+            return render(request, "register.html", {
+                "message": "Username already taken."
+            })
+        return HttpResponseRedirect(reverse("view doctors"))
+    else:
+        return render(request, "add-staff.html")
