@@ -30,9 +30,25 @@
     background-color: #ddd;
   }
   
-#appoint {
-padding-right: 7000px;
+  .services {
+    width: 100%;
+    background: linear-gradient(to right, #1d86df 0%, #39b49a 100%);
+    padding: 75px 0;
 }
+.services {
+    width: 100%;
+    background: url('../images/service-bg.png');
+    padding: 75px 0;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+	float:left;
+	width:100%;
+}
+#service .containerr {
+    padding-left: 200px;
+    padding-right: 200px;
+ }
 .appointment-form {
     width: 100%;
     background: #fff;
@@ -68,4 +84,8 @@ padding-right: 7000px;
   }
   #footer{
     background-color: #ecf1f6;
+  }
+  .clickable {
+  cursor:grab;
+  text-decoration: underline; 
   }
