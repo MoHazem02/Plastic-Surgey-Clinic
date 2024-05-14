@@ -108,15 +108,7 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            {% if is_doctor %}
-                <li class=""><a href="../doctor"><i class="fa fa-circle-o"></i> Dashboard</a></li>
-                {%else %}
-                <li class=""><a href="../admin"><i class="fa fa-circle-o"></i> Dashboard</a></li>
-                {%endif%}
-            </li>
-            {% if not is_doctor %}
-            <li><a href="../staff/doctors"><i class="fa fa-sitemap"></i> Doctors</a></li>
-            {%endif%}
+            <li><a href="../doctors"><i class="fa fa-sitemap"></i> Doctors</a></li>
             <li>
               <a href="../calendar">
                 <i class="fa fa-calendar"></i> <span>Calendar</span>

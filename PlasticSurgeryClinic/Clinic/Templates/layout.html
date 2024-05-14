@@ -30,6 +30,7 @@
    <script src="../static/js/modernizer.js"></script>
 
    <link rel="stylesheet" href="../static/css/nurseportal.css">
+   <link rel="stylesheet" href="../static/css/DoctorPortal.css">
 
    <!-- [if lt IE 9] -->
    </head>
@@ -40,15 +41,26 @@
           <a class="navbar-brand" href="index.html"><img src="../static/images/logo (3) .png" alt="image"></a>
           <div class="right-header">
              <div class="header-info">
+               {% if user.is_authenticated and user.role == "NURSE" %}
+               <div class="info-inner">
+                  <span class="icontop"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                  <span class="iconcont"><a data-scroll>info@HavenClinic.com</a></span>	
+               </div>
+               {% elif user.is_authenticated and user.role == "DOCTOR" %}
+               <div class="info-inner">
+                  <span class="icontop"><img src="{{ doctor.profile_picture }}" alt="#"></span>
+                  <span class="iconcont"><a data-scroll>{{doctor}}</a></span>	
+               </div>
+               {% else %}
                 <div class="info-inner">
                    <span class="icontop"><img src="../static/images/phone-icon.png" alt="#"></span>
                    <span class="iconcont"><a href="tel:800 123 456">01062022113</a></span>	
                 </div>
                 <div class="info-inner">
                    <span class="icontop"><i class="fa fa-envelope" aria-hidden="true"></i></span>
-                   <span class="iconcont"><a data-scroll href="mailto:info@yoursite.com">info@HavenClinic.com</a></span>	
+                   <span class="iconcont"><a data-scroll>info@HavenClinic.com</a></span>	
                 </div>
-
+                {% endif %}
              </div>
           </div>
        </div>
@@ -70,7 +82,7 @@
                   <li><a data-scroll href="../logout">Log Out</a></li>
                   {% elif user.role == "DOCTOR" %}
                   <li><a class="active" href="../">Home</a></li>
-                  <li><a data-scroll href="../nurse">View Appointments</a></li>
+                  <li><a data-scroll href="../doctor">View Appointments</a></li>
                   <li><a data-scroll href="../logout">Log Out</a></li>
                   {% else %}
                   <li><a class="active" href="../">Home</a></li>

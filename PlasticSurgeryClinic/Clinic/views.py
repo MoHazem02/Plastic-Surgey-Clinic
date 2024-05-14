@@ -91,9 +91,10 @@ def doctor_view(request):
     user_id = request.user.id
     Appointments = Appointment.objects.filter(doctor_id = user_id)
     dict = {
-        'app': Appointments
+        'apps': Appointments,
+        'doctor': Doctor.objects.get(pk = user_id)
     }
-    return render(request, "doctor.html", dict)
+    return render(request, "DoctorPortal.html", dict)
         
 def nurse_view(request):
     if not request.user.is_authenticated:

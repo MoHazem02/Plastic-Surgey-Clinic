@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block body %}
+<div id="home" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4" style="background-image:url('../static/images/appointment.jpg');">
+    <div id= "View" class="container">
+        <!-- Appointments Section -->
+        
+        <!-- Table for Doctor's Appointments -->
+        <div class="blue-container">
+            <h2 id="appoint">Upcoming Appointments</h2>
+            <table class="appointments-table">
+                <thead>
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Patient ID</th>
+                        <th>Appointment ID</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for app in apps %}
+                    <tr>
+                        <td>{{app.patient}}</td>
+                        <td>{{app.patient.id}}</td>
+                        <td>{{app.id}}</td>
+                        <td>{{app.day}}</td>
+                        <td>{{app.time}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
