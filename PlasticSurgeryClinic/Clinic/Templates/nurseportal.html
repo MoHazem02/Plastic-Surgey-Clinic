@@ -18,102 +18,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>John Doe</td>
-                        <td>P12345</td>
-                        <td>001</td>
-                        <td>Monday</td>
-                        <td>9:00 AM</td>
-                        <td>Dr. Smith</td>
-                    </tr>
-                    <tr>
-                        <td>Jane Smith</td>
-                        <td>P67890</td>
-                        <td>002</td>
-                        <td>Tuesday</td>
-                        <td>10:30 AM</td>
-                        <td>Dr. Johnson</td>
-                    </tr>
-                    <tr>
-                        <td>John Doe</td>
-                        <td>P12345</td>
-                        <td>001</td>
-                        <td>Monday</td>
-                        <td>9:00 AM</td>
-                        <td>Dr. Smith</td>
-                    </tr>
-                    <tr>
-                        <td>Jane Smith</td>
-                        <td>P67890</td>
-                        <td>002</td>
-                        <td>Tuesday</td>
-                        <td>10:30 AM</td>
-                        <td>Dr. Johnson</td>
-                    </tr>
-                    <tr>
-                        <td>John Doe</td>
-                        <td>P12345</td>
-                        <td>001</td>
-                        <td>Monday</td>
-                        <td>9:00 AM</td>
-                        <td>Dr. Smith</td>
-                    </tr>
-                    <tr>
-                        <td>Jane Smith</td>
-                        <td>P67890</td>
-                        <td>002</td>
-                        <td>Tuesday</td>
-                        <td>10:30 AM</td>
-                        <td>Dr. Johnson</td>
-                    </tr>
-                    <tr>
-                        <td>John Doe</td>
-                        <td>P12345</td>
-                        <td>001</td>
-                        <td>Monday</td>
-                        <td>9:00 AM</td>
-                        <td>Dr. Smith</td>
-                    </tr>
-                    <tr>
-                        <td>Jane Smith</td>
-                        <td>P67890</td>
-                        <td>002</td>
-                        <td>Tuesday</td>
-                        <td>10:30 AM</td>
-                        <td>Dr. Johnson</td>
-                    </tr>
-                    <tr>
-                        <td>John Doe</td>
-                        <td>P12345</td>
-                        <td>001</td>
-                        <td>Monday</td>
-                        <td>9:00 AM</td>
-                        <td>Dr. Smith</td>
-                    </tr>
-                    <tr>
-                        <td>Jane Smith</td>
-                        <td>P67890</td>
-                        <td>002</td>
-                        <td>Tuesday</td>
-                        <td>10:30 AM</td>
-                        <td>Dr. Johnson</td>
-                    </tr>
-                    <tr>
-                        <td>John Doe</td>
-                        <td>P12345</td>
-                        <td>001</td>
-                        <td>Monday</td>
-                        <td>9:00 AM</td>
-                        <td>Dr. Smith</td>
-                    </tr>
-                    <tr>
-                        <td>Jane Smith</td>
-                        <td>P67890</td>
-                        <td>002</td>
-                        <td>Tuesday</td>
-                        <td>10:30 AM</td>
-                        <td>Dr. Johnson</td>
-                    </tr>
+                    {% for item in appointments %}
+                        <tr>
+                            <td>{{item.patient.first_name}} {{item.patient.last_name}}</td>
+                            <td>{{item.patient.id}}</td>
+                            <td>{{item.id}}</td>
+                            <td>{{item.day}}</td>
+                            <td>{{item.time}}</td>
+                            <td>Dr. {{item.doctor.first_name}} {{item.doctor.last_name}}</td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

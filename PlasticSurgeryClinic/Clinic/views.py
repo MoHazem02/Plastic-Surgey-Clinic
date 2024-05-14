@@ -101,8 +101,11 @@ def nurse_view(request):
         app.save()
 
     Doctors = Doctor.objects.all()
+    Appointments = Appointment.objects.all()
+
     dict = {
-        'doctors': Doctors
+        'doctors': Doctors,
+        'appointments': Appointments
     }
     return render(request, "nurseportal.html", dict)
 
