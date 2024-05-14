@@ -75,9 +75,10 @@ def patient_view(request):
         app = Appointment.objects.create(patient=patient, time=time, day=day, doctor=doctor)
         app.save()
 
-    Doctors = Doctor.objects.all()
+    user_id = request.user.id
+    Appointments = Appointment.objects.filter(patient_id = user_id)
     dict = {
-        'doctors': Doctors
+        'app': Appointments
     }
     return render(request, "patientportal.html", dict)
     
@@ -85,8 +86,14 @@ def doctor_view(request):
     if not request.user.is_authenticated:
         return render(request, "login.html")
     if request.method == "POST":
-        return render(request, "nurseportal.html")
-    return render(request, "nurseportal.html")
+        return render(request, "doctor.html")
+    
+    user_id = request.user.id
+    Appointments = Appointment.objects.filter(doctor_id = user_id)
+    dict = {
+        'app': Appointments
+    }
+    return render(request, "doctor.html", dict)
         
 def nurse_view(request):
     if not request.user.is_authenticated:

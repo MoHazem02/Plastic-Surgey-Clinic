@@ -98,84 +98,60 @@
             
             <!-- Table for Doctor's Appointments -->
             <div class="blue-container">
-                <table class="appointments-table">
-                    <thead>
-                        <tr>
-                            <th>Appointment ID</th>
-                            <th>Day</th>
-                            <th>Time</th>
-                            <th>Doctor</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
+               <h2>Upcoming Appointments</h2>
+               <table class="appointments-table">
+                   <thead>
+                       <tr>
+                           <th>Appointment ID</th>
+                           <th>Day</th>
+                           <th>Time</th>
+                           <th>Doctor</th>
+                           <th>Edit</th>
+                           <th>Cancel</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                     {% for item in app %}
+                       <tr>
+                           <td>{{item.id}}</td>
+                           <td>{{item.day}}</td>
+                           <td>{{item.time}}</td>
+                           <td>Dr. {{item.doctor.first_name}} {{item.doctor.last_name}}</td>
+                           <td class="clickable">Edit</td>
+                           <td class="clickable">Cancel</td>
+                       </tr>
+                     {% endfor %}
+                   </tbody>
+               </table>
+           </div>
 
-                            <td>001</td>
-                            <td>Monday</td>
-                            <td>9:00 AM</td>
-                            <td>Dr. Smith</td>
-                        </tr>
-                        <tr>
-
-                            <td>002</td>
-                            <td>Tuesday</td>
-                            <td>10:30 AM</td>
-                            <td>Dr. Johnson</td>
-                        </tr>
-                        <tr>
-
-                            <td>001</td>
-                            <td>Monday</td>
-                            <td>9:00 AM</td>
-                            <td>Dr. Smith</td>
-                        </tr>
-                        <tr>
-
-                            <td>002</td>
-                            <td>Tuesday</td>
-                            <td>10:30 AM</td>
-                            <td>Dr. Johnson</td>
-                        </tr>
-                        <tr>
-
-                            <td>001</td>
-                            <td>Monday</td>
-                            <td>9:00 AM</td>
-                            <td>Dr. Smith</td>
-                        </tr>
-                        <tr>
-
-                            <td>002</td>
-                            <td>Tuesday</td>
-                            <td>10:30 AM</td>
-                            <td>Dr. Johnson</td>
-                        </tr>
-                        <tr>
-
-                            <td>001</td>
-                            <td>Monday</td>
-                            <td>9:00 AM</td>
-                            <td>Dr. Smith</td>
-                        </tr>
-                        <tr>
-
-                            <td>002</td>
-                            <td>Tuesday</td>
-                            <td>10:30 AM</td>
-                            <td>Dr. Johnson</td>
-                        </tr>
-                        <tr>
-
-                            <td>001</td>
-                            <td>Monday</td>
-                            <td>9:00 AM</td>
-                            <td>Dr. Smith</td>
-                        </tr>
-                      
-                    </tbody>
-                </table>
-            </div>
-        </div>
+           <div class="blue-container">
+              <h2>Previous Appointments</h2>
+               <table class="appointments-table">
+                   <thead>
+                       <tr>
+                           <th>Appointment ID</th>
+                           <th>Day</th>
+                           <th>Time</th>
+                           <th>Doctor</th>
+                           <th>View Prescription</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                     <!-- {% for item in app %}
+                     <tr>
+                         <td>{{item.id}}</td>
+                         <td>{{item.day}}</td>
+                         <td>{{item.time}}</td>
+                         <td>Dr. {{item.doctor.first_name}} {{item.doctor.last_name}}</td>
+                         <td class="clickable">View</td>
+                     </tr>
+                   {% endfor %} -->
+                   </tbody>
+               </table>
+           </div>
+           
+       </div>
     </div>
     <div id="Instructions" class="section wow fadeIn">
         <div class="container">
