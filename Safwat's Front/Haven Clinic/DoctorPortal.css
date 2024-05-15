@@ -1,0 +1,79 @@
+.blue-container {
+    background-color: #e0e9f1; /* Adjust the color as needed */
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px; /* Adjust spacing from the section heading */
+  }
+  
+  .appointments-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .appointments-table th,
+  .appointments-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .appointments-table th {
+    background-color: #4e7cad; /* Adjust the color as needed */
+    color: #fff;
+  }
+  
+  .appointments-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .appointments-table tbody tr:hover {
+    background-color: #ddd;
+  }
+  
+    .blue-background {
+      padding: 60px;
+      color: #ffffff; /* Text color */
+      justify-content: center; /* Align content horizontally in the center */
+      display: flex;
+
+
+    }
+
+    .blue-background select {
+        width: 60%;
+        padding: 20px;
+        border-radius: 0; /* Remove border radius */
+        border: none;
+        outline: none;
+        border-radius: 5px; /* Add border radius */
+        background-color: #ecf1f6;
+        color: #333333; /* Combo box text color */
+        justify-content: right; /* Align content horizontally in the center */
+
+    }
+
+    .notes-box {
+        background-color: #ffffff;
+        padding: 80px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    }
+
+    .notes-box h3 {
+        margin-bottom: 10px;
+        
+    }
+
+    .notes-box textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #dddddd;
+        border-radius: 5px;
+        resize: vertical; /* Allow vertical resizing */
+        
+    }
+    .copyright-area {
+      padding: 20px; /* Adjust the padding value as needed */
+  }
+  .Notes-section {
+    padding: 10px; /* Adjust the padding value as needed */
+}
