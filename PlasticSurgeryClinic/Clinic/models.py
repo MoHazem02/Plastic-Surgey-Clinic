@@ -30,13 +30,13 @@ class Nurse(User):
     working_shift = models.CharField(max_length=8, choices=[('M', 'Morning'), ('E', 'Evening'), ('N', 'Night')], null=True)
 
 class Patient(User):
-    age = models.IntegerField(null=True, blank=True)
+    date_of_birth = models.DateField()
     history = models.CharField(max_length=255, null=True, blank=True)
     phone_number = models.CharField(max_length=11)
 
 class Appointment(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, null=True)
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, null=True)
-    day = models.CharField(max_length=10, default='Thursday')
-    time = models.CharField(max_length=10, default='10:00')
+    date = models.DateField()
+    time = models.CharField(max_length=8, choices=[('M', 'Morning'), ('E', 'Evening'), ('N', 'Night')], null=True)
     remarks = models.CharField(max_length=255, null=True, blank=True)

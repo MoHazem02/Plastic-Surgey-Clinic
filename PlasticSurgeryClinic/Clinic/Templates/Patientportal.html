@@ -27,35 +27,16 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 select-section">
                                <div class="row">
                                   <div class="form-group">
-                                     <select class="form-control" name = "day">
-                                        <option>Day</option>
-                                        <option>Sunday</option>
-                                        <option>Monday</option>
-                                        <option>Tuesday</option>
-                                        <option>Wednesday</option>
-                                        <option>Thursday</option>
-                                        <option>Saturday</option>
-                                        <option>Friday</option>
-            
-            
-                                     </select>
+                                     <input type="date" id="date_field" name="date">
                                   </div>
                                   <div class="form-group">
                                     <select class="form-control" id="timeSelect" name="time">
                                         <option>Time</option>
+                                        <option>Morning</option>
+                                        <option>Evening</option>
+                                        <option>Night</option>
                                     </select>
                                 </div>
-                                
-                                <script>
-                                    var select = document.getElementById("timeSelect");
-                                
-                                    for (var hour = 9; hour <= 12; hour++) {
-                                        select.options[select.options.length] = new Option(hour + ":00 AM", hour + ":00 AM");
-                                    }
-                                    for (var hour = 1; hour <= 9; hour++) {
-                                        select.options[select.options.length] = new Option(hour + ":00 PM", hour + ":00 PM");
-                                    }
-                                </script>
                                 
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                <div class="row">
@@ -103,7 +84,7 @@
                    <thead>
                        <tr>
                            <th>Appointment ID</th>
-                           <th>Day</th>
+                           <th>Date</th>
                            <th>Time</th>
                            <th>Doctor</th>
                            <th>Edit</th>
@@ -114,7 +95,7 @@
                      {% for item in app %}
                        <tr>
                            <td>{{item.id}}</td>
-                           <td>{{item.day}}</td>
+                           <td>{{item.date}}</td>
                            <td>{{item.time}}</td>
                            <td>Dr. {{item.doctor.first_name}} {{item.doctor.last_name}}</td>
                            <td class="clickable">Edit</td>

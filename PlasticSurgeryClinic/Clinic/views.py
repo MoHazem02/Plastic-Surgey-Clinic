@@ -49,13 +49,13 @@ def register_patient(request):
         email = request.POST["mail"]
         password = request.POST["patient_password"]
         gender = request.POST["sex"]
-        age = request.POST["age"]
+        date_of_birth = request.POST["date"]
         phone = request.POST["phone_number"]
 
         # Attempt to create new user
         try:
             patient = Patient.objects.create_user(role="PATIENT", first_name=fName, last_name=LName, username= username, password=password, email=email, 
-                                                  sex = "M" if gender == "Male" else "F", age=age, phone_number=phone)
+                                                  sex = "M" if gender == "Male" else "F", date_of_birth=date_of_birth, phone_number=phone)
             patient.save()
         except IntegrityError:
             return render(request, "register.html", {
@@ -68,16 +68,18 @@ def patient_view(request):
         return render(request, "login.html")
     if request.method == "POST":
         time = request.POST.get('time')
-        day = request.POST.get('day')
+        date = request.POST.get('date')
         doctor = Doctor.objects.get(pk = request.POST.get('doctor'))  
         patient = Patient.objects.get(id = request.POST.get('id'))
         
-        app = Appointment.objects.create(patient=patient, time=time, day=day, doctor=doctor)
+        app = Appointment.objects.create(patient=patient, time=time, date=date, doctor=doctor)
         app.save()
 
     user_id = request.user.id
     Appointments = Appointment.objects.filter(patient_id = user_id)
+    Doctors = Doctor.objects.all()
     dict = {
+        'doctors': Doctors,
         'app': Appointments
     }
     return render(request, "patientportal.html", dict)
@@ -101,11 +103,11 @@ def nurse_view(request):
         return render(request, "login.html")
     if request.method == "POST":
         time = request.POST.get('time')
-        day = request.POST.get('day')
+        date = request.POST.get('date')
         doctor = Doctor.objects.get(pk = request.POST.get('doctor'))  
         patient = Patient.objects.get(id = request.POST.get('id'))
         
-        app = Appointment.objects.create(patient=patient, time=time, day=day, doctor=doctor)
+        app = Appointment.objects.create(patient=patient, time=time, date=date, doctor=doctor)
         app.save()
 
     Doctors = Doctor.objects.all()
