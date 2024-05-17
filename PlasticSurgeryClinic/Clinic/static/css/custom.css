@@ -116,9 +116,10 @@ header {
     background: #157fda;
     width: 45px;
     height: 45px;
+    border-radius: 50%;
+
     text-align: center;
     line-height: normal;
-    padding: 10px 12px;
     margin-right: 15px;
     color: #fff;
     font-size: 18px;
@@ -136,6 +137,8 @@ header {
 }
 .info-inner span.icontop img {
 	width:100%;
+	height: 100% ;
+    	border-radius: 50%;
 }
 .serch-bar {
     float: right;
