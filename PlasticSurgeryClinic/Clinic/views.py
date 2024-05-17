@@ -148,6 +148,7 @@ def admin(request):
     if not request.user.is_authenticated:
         return render(request, "login.html")
     if request.method == "POST":
+        # TODO: Update the patient's data in the databse with the new data
         pass
     else:
         total_patients = Patient.objects.all().count()
