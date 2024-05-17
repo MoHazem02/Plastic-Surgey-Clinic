@@ -87,18 +87,16 @@
                            <th>Date</th>
                            <th>Time</th>
                            <th>Doctor</th>
-                           <th>Edit</th>
                            <th>Cancel</th>
                        </tr>
                    </thead>
                    <tbody>
-                     {% for item in app %}
+                     {% for item in future_app %}
                        <tr>
                            <td>{{item.id}}</td>
                            <td>{{item.date}}</td>
                            <td>{{item.time}}</td>
                            <td>Dr. {{item.doctor.first_name}} {{item.doctor.last_name}}</td>
-                           <td class="clickable">Edit</td>
                            <td class="clickable">Cancel</td>
                        </tr>
                      {% endfor %}
@@ -112,22 +110,22 @@
                    <thead>
                        <tr>
                            <th>Appointment ID</th>
-                           <th>Day</th>
+                           <th>Date</th>
                            <th>Time</th>
                            <th>Doctor</th>
                            <th>View Prescription</th>
                        </tr>
                    </thead>
                    <tbody>
-                     <!-- {% for item in app %}
-                     <tr>
-                         <td>{{item.id}}</td>
-                         <td>{{item.day}}</td>
-                         <td>{{item.time}}</td>
-                         <td>Dr. {{item.doctor.first_name}} {{item.doctor.last_name}}</td>
-                         <td class="clickable">View</td>
-                     </tr>
-                   {% endfor %} -->
+                     {% for item in past_app %}
+                       <tr>
+                           <td>{{item.id}}</td>
+                           <td>{{item.date}}</td>
+                           <td>{{item.time}}</td>
+                           <td>Dr. {{item.doctor.first_name}} {{item.doctor.last_name}}</td>
+                           <td class="clickable">View</td>
+                       </tr>
+                     {% endfor %}
                    </tbody>
                </table>
            </div>

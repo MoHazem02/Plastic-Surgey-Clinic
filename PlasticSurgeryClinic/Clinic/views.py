@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import User, Doctor, Patient, Nurse, Appointment, Department
+import datetime
 # Create your views here.
 
 def index(request):
@@ -63,6 +64,12 @@ def register_patient(request):
             })
     return render(request, "register.html")
 
+def cancel_appointment(request):
+    if request.method == "POST":
+        appointment = Appointment.objects.get(pk = request.POST.get('appointment'))
+        appointment.delete()
+    return HttpResponseRedirect(reverse("patient"))
+
 def patient_view(request):
     if not request.user.is_authenticated:
         return render(request, "login.html")
@@ -77,10 +84,18 @@ def patient_view(request):
 
     user_id = request.user.id
     Appointments = Appointment.objects.filter(patient_id = user_id)
+
+    today = datetime.date.today()
+    past_appointments = Appointments.filter(date__lt=today)
+    future_appointments = Appointments.filter(date__gte=today)
+
+    
+
     Doctors = Doctor.objects.all()
     dict = {
         'doctors': Doctors,
-        'app': Appointments
+        'past_app': past_appointments,
+        'future_app': future_appointments
     }
     return render(request, "patientportal.html", dict)
     
@@ -88,10 +103,17 @@ def doctor_view(request):
     if not request.user.is_authenticated:
         return render(request, "login.html")
     if request.method == "POST":
-        return render(request, "doctor.html")
+        appointment = Appointment.objects.get(pk = request.POST.get('appointment'))
+        notes = request.POST.get('notes')
+        print(appointment)
+        print(notes)
+        appointment.remarks = notes
+        appointment.save()
     
     user_id = request.user.id
-    Appointments = Appointment.objects.filter(doctor_id = user_id)
+    today = datetime.date.today()
+
+    Appointments = Appointment.objects.filter(doctor_id = user_id, date=today)
     dict = {
         'apps': Appointments,
         'doctor': Doctor.objects.get(pk = user_id)
@@ -111,7 +133,9 @@ def nurse_view(request):
         app.save()
 
     Doctors = Doctor.objects.all()
-    Appointments = Appointment.objects.all()
+    today = datetime.date.today()
+
+    Appointments = Appointment.objects.filter(date=today)
 
     dict = {
         'doctors': Doctors,

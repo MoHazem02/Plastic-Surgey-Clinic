@@ -13,7 +13,7 @@
                         <th>Patient Name</th>
                         <th>Patient ID</th>
                         <th>Appointment ID</th>
-                        <th>Day</th>
+                        <th>Date</th>
                         <th>Time</th>
                     </tr>
                 </thead>
@@ -23,7 +23,7 @@
                         <td>{{app.patient}}</td>
                         <td>{{app.patient.id}}</td>
                         <td>{{app.id}}</td>
-                        <td>{{app.day}}</td>
+                        <td>{{app.date}}</td>
                         <td>{{app.time}}</td>
                     </tr>
                     {% endfor %}
@@ -32,5 +32,39 @@
         </div>
     </div>
 </div>
+
+<section class="combined-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <form method="POST" action="{% url 'doctor' %}">
+                    {% csrf_token %}
+                    <!-- Combo Box Section -->
+                    <div class="blue-background">
+                        <select class="form-control" name="appointment">
+                            <option>Select Appointment</option>
+                            {% for item in apps %}
+                                <option value="{{ item.id }}">ID: {{ item.id }} Date: {{ item.date }} {{ item.time }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!-- End of Combo Box Section -->
+
+                    <!-- Notes Section -->
+                    <div class="notes-box" name="notes">
+                        <h3>Notes</h3>
+                        <textarea class="form-control" name="notes" rows="8" placeholder="Enter your notes here..."></textarea>
+                    </div>
+                    <!-- End of Notes Section -->
+
+                    <!-- Submit Button -->
+                    <br>
+                    <button type="submit" class="center">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End of Notes Section -->
 {% endblock %}
 

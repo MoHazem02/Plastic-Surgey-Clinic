@@ -69,3 +69,8 @@ padding-right: 7000px;
   #footer{
     background-color: #ecf1f6;
   }
+  
+.clickable {
+    cursor:grab;
+    text-decoration: underline; 
+}
