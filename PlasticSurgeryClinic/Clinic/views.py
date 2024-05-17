@@ -9,7 +9,8 @@ import datetime
 # Create your views here.
 
 def index(request):
-    return render(request, "index.html")
+    doctors = Doctor.objects.all()
+    return render(request, "index.html", {"doctors": doctors})
 
 
 def login_view(request):

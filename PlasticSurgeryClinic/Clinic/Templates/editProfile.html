@@ -12,23 +12,20 @@
         <div class="profile-picture-container">
             <img id="profile_picture_preview" src="../static/images/patient.jpg" alt="Profile Picture" class="profile-picture">
         </div>
-        <form id="profileForm" action="#" method="POST" enctype="multipart/form-data">
+        <form id="profileForm" action="{% url 'edit_profile' %}" method="post">
+            {% csrf_token %}
             <table class="profile-table">
                 <tr  class="even">
-                    <td>Profile Picture</td>
-                    <td><input type="text" id="first_name" name="profile_pic" value="URL"></td>
-                </tr>
-                <tr  class="even">
                     <td>First Name</td>
-                    <td><input type="text" id="first_name" name="first_name" value="Yasser"></td>
+                    <td><input type="text" id="first_name" name="first_name" value="{{user.first_name}}" disabled></td>
                 </tr>
                 <tr  class="odd">
                     <td>Last Name</td>
-                    <td><input type="text" id="last_name" name="last_name" value="Yasser"></td>
+                    <td><input type="text" id="last_name" name="last_name" value="{{user.last_name}}" disabled></td>
                 </tr>
                 <tr class="even">
                     <td>Phone Number</td>
-                    <td><input type="tel" id="phone" name="phone" value="01234567895"></td>
+                    <td><input type="tel" id="phone" name="phone" placeholder="0102815471"></td>
                 </tr>
                 <tr class="odd">
                     <td>Age</td>
@@ -36,7 +33,7 @@
                 </tr>
                 <tr class="even">
                     <td>Address</td>
-                    <td><input type="text" id="address" name="address" value="123 Street, City" ></td>
+                    <td><input type="text" id="address" name="address" placeholder="123 Street, City" ></td>
                 </tr>
                 <tr class="odd">
                     <td>Nationality</td>
@@ -85,11 +82,11 @@
                 </tr>
                 <tr class="even">
                     <td>Email</td>
-                    <td><input type="email" id="email" name="email" value="example@example.com" ></td>
+                    <td><input type="email" id="email" name="email" placeholder="example@example.com" ></td>
                 </tr>
                 </tr>
             </table>
-            <button id="saveBtn" type="button">Update My Profile</button>
+            <button id="saveBtn" type="submit">Update My Profile</button>
         </form>
     </div>
 

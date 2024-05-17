@@ -194,64 +194,32 @@
             </div>
 
             <div class="row dev-list text-center">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeIn;">
-                    <div class="widget clearfix">
-                        <img src="../static/images/doctor_01.jpg" alt="" class="img-responsive img-rounded">
-                        <div class="widget-title">
-                            <h3>DR. Amr Safwat</h3>
-                            <small>Clinic Owner</small>
-                        </div>
-                        <!-- end title -->
-                        <p>Hello guys, I am Amr Safwat. I am senior art director and founder of Haven Clinic.</p>
-
-                        <div class="footer-social">
-                            <a href="#" class="btn grd1"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="btn grd1"><i class="fa fa-github"></i></a>
-                            <a href="#" class="btn grd1"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="btn grd1"><i class="fa fa-linkedin"></i></a>
-                        </div>
-                    </div><!--widget -->
-                </div><!-- end col -->
-
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.4s; animation-name: fadeIn;">
-                    <div class="widget clearfix">
-                        <img src="../static/images/doctor_02.jpg" alt="" class="img-responsive img-rounded">
-                        <div class="widget-title">
-                            <h3>Bryan Saftler</h3>
-                            <small>Hair Specialist</small>
-                        </div>
-                        <!-- end title -->
-                        <p>Hello guys, I am Dr. Saftler. I am a specialist in hair treatment.  .</p>
-
-                        <div class="footer-social">
-                            <a href="#" class="btn grd1"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="btn grd1"><i class="fa fa-github"></i></a>
-                            <a href="#" class="btn grd1"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="btn grd1"><i class="fa fa-linkedin"></i></a>
-                        </div>
-                    </div><!--widget -->
-                </div><!-- end col -->
-
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn">
-                    <div class="widget clearfix">
-                        <img src="../static/images/doctor_03.jpg" alt="" class="img-responsive img-rounded">
-                        <div class="widget-title">
-                            <h3>Matthew Bayliss</h3>
-                            <small>Laser Specialist</small>
-                        </div>
-                        <!-- end title -->
-                        <p>Hello guys, I am Dr.Bayliss . I am your laser specialist.</p>
-
-                        <div class="footer-social">
-                            <a href="#" class="btn grd1"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="btn grd1"><i class="fa fa-github"></i></a>
-                            <a href="#" class="btn grd1"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="btn grd1"><i class="fa fa-linkedin"></i></a>
-                        </div>
-                    </div><!--widget -->
-                </div><!-- end col -->
-
-            </div><!-- end row -->
+               {% for doctor in doctors %}
+                   {% if forloop.counter0|divisibleby:3 and not forloop.first %}
+                       </div><!-- end row -->
+                       <div class="row dev-list text-center">
+                   {% endif %}
+                   <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeIn;">
+                       <div class="widget clearfix">
+                           <img src="{{ doctor.profile_picture }}" alt="" class="img-responsive img-rounded">
+                           <div class="widget-title">
+                               <h3>{{doctor}}</h3>
+                               <small>{{ doctor.department }}</small>
+                           </div>
+                           <!-- end title -->
+                           <p>{{doctor.medical_degree}}</p>
+           
+                           <div class="footer-social">
+                               <a href="#" class="btn grd1"><i class="fa fa-facebook"></i></a>
+                               <a href="#" class="btn grd1"><i class="fa fa-github"></i></a>
+                               <a href="#" class="btn grd1"><i class="fa fa-twitter"></i></a>
+                               <a href="#" class="btn grd1"><i class="fa fa-linkedin"></i></a>
+                           </div>
+                       </div><!--widget -->
+                   </div><!-- end col -->
+               {% endfor %}
+           </div><!-- end row -->
+           
         </div><!-- end container -->
     </div>
 	  

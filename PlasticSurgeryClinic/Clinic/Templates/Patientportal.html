@@ -1,4 +1,13 @@
 {% extends "layout.html" %}
+<script>
+   document.addEventListener("DOMContentLoaded", function() {
+       document.querySelectorAll('.clickable-td').forEach(function(clickableTd) {
+           clickableTd.addEventListener('click', function() {
+               this.previousElementSibling.click();
+           });
+       });
+   });
+</script>
 {% block body %}
 
       <div id="service" class="services wow fadeIn">
@@ -13,14 +22,14 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                <div class="row">
                                   <div class="form-group">
-                                     <input type="text" id="name" placeholder="Patient Name"  />
+                                     <input type="text" id="name"  value="{{user.first_name}} {{user.last_name}}" disabled/>
                                   </div>
                                </div>
                             </div>
                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="row">
                                    <div class="form-group">
-                                      <input type="text" placeholder="Patient Id" id="Patient ID" name = "id" />
+                                      <input type="text" placeholder="Patient Id" id="Patient ID" name = "id" value="{{user.id}}" disabled/>
                                    </div>
                                 </div>
                             </div>
@@ -43,8 +52,8 @@
                                   <div class="form-group">
                                      <select class="form-control" name="doctor">
                                         <option>Doctor Name</option>
-                                        {% for item in doctors %}
-                                          <option value = "{{item.id}}"> Dr. {{ item.first_name }} {{ item.last_name }}</option>
+                                        {% for doctor in doctors %}
+                                          <option value = "{{doctor.id}}"> {{doctor}} -  {{doctor.department}}</option>
                                         {% endfor %}
                                      </select>
                                   </div>
@@ -73,21 +82,23 @@
       </div>
       
      <!-- end section -->
-     <div id="home" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4" style="background-image:url('images/appointment.jpg');">
+     <div id="home" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4" style="background-image:url('../static/images/appointment.jpg');">
         <div id= "View" class="container">
             <!-- Appointments Section -->
             
             <!-- Table for Doctor's Appointments -->
             <div class="blue-container">
                <h2>Upcoming Appointments</h2>
+               <form method = "post" action = "{%url 'cancel' %}">
+                {% csrf_token %}
                <table class="appointments-table">
                    <thead>
                        <tr>
-                           <th>Appointment ID</th>
-                           <th>Date</th>
-                           <th>Time</th>
-                           <th>Doctor</th>
-                           <th>Cancel</th>
+                           <th style="text-align: center;">Appointment ID</th>
+                           <th style="text-align: center;">Date</th>
+                           <th style="text-align: center;">Time</th>
+                           <th style="text-align: center;">Doctor</th>
+                           <th style="text-align: center;">Cancel</th>
                        </tr>
                    </thead>
                    <tbody>
@@ -96,12 +107,13 @@
                            <td>{{item.id}}</td>
                            <td>{{item.date}}</td>
                            <td>{{item.time}}</td>
-                           <td>Dr. {{item.doctor.first_name}} {{item.doctor.last_name}}</td>
-                           <td class="clickable">Cancel</td>
+                           <td>{{item.doctor}}</td>
+                           <td style="text-align: center;"><button type="submit" name="appointment_id" value="{{item.id}}" class="btn btn-danger">Cancel</button></td>
                        </tr>
                      {% endfor %}
                    </tbody>
                </table>
+               </form>
            </div>
 
            <div class="blue-container">

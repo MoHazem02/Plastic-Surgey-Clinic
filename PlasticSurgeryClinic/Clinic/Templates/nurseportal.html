@@ -81,8 +81,8 @@
                       <div class="form-group">
                          <select class="form-control" name="doctor">
                             <option>Doctor Name</option>
-                            {% for item in doctors %}
-                            <option value = "{{item.id}}"> Dr. {{ item.first_name }} {{ item.last_name }}</option>
+                            {% for doctor in doctors %}
+                            <option value = "{{doctor.id}}"> {{doctor}}</option>
                             {% endfor %}
                          </select>
                       </div>
