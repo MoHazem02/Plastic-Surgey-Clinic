@@ -150,7 +150,9 @@ def admin(request):
     if request.method == "POST":
         pass
     else:
-        return render(request, "admin.html")
+        total_patients = Patient.objects.all().count()
+        total_appointments = Appointment.objects.all().count()
+        return render(request, "admin.html", {"total_patients": total_patients, "total_appointments": total_appointments})
     
 def edit_profile(request):
     if not request.user.is_authenticated:
