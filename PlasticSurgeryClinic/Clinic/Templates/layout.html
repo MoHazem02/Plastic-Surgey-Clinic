@@ -78,20 +78,29 @@
                   {% if user.role == "NURSE" %}
                   <li><a class="active" href="../">Home</a></li>
                   <li><a data-scroll href="../nurse">View Appointments</a></li>
+                  <li><a data-scroll href="#appointmentbooking">Book Appointment</a></li>
                   <li><a data-scroll href="../register">Register Patient</a></li>
                   <li><a data-scroll href="../logout">Log Out</a></li>
                   {% elif user.role == "DOCTOR" %}
                   <li><a class="active" href="../">Home</a></li>
                   <li><a data-scroll href="../doctor">View Appointments</a></li>
+                  <li><a data-scroll href="#Pres">Write Prescription</a></li>
                   <li><a data-scroll href="../logout">Log Out</a></li>
                   {% else %}
-                  <li><a class="active" href="../">Home</a></li>
-                   <li><a data-scroll href="../patient">Make Appointment</a></li>
-                   <li><a data-scroll href="../edit_profile">Edit Profile</a></li>
-                   <li><a data-scroll href="../login">Log Out</a></li>
-                     {% endif %}
+                  <li><a class="active" href="index.html">Home</a></li>>
+                  <li><a data-scroll href="../patient">Book Appointment</a></li>
+                  <li><a data-scroll href="../edit_profile">Edit Profile</a></li> 
+                  <li><a data-scroll href="#View">View Your Appointments</a></li>
+                  <li><a data-scroll href="#Instructions">Instructions</a></li>
+						<li><a data-scroll href="../logout">LogOut</a></li>
+                  {% endif %}
                   {% else %}
                   <li><a class="active" href="../">Home</a></li>
+                  <li><a data-scroll href="#about">About us</a></li>
+                  <li><a data-scroll href="#service">Services</a></li>
+                  <li><a data-scroll href="#doctors">Doctors</a></li>
+                  <li><a data-scroll href="#testimonials">Testimonials</a></li>
+                  <li><a data-scroll href="#getintouch">Contact</a></li>
                   <li><a data-scroll href="../login">Log In</a></li>
                   {% endif %}
                    
@@ -118,7 +127,7 @@
  {% block body %}
  {% endblock %}
  </div>
- <div class="copyright-area wow fadeIn">
+ <div id = "getintouch" class ="copyright-area wow fadeIn">
     <div class="container">
        <div class="row">
           <div class="col-md-8">
