@@ -157,16 +157,16 @@ def edit_profile(request):
                     logout(request)
                     return HttpResponseRedirect(reverse("staff_login"))
                 else:
-                    return render(request, "edit_profile.html",
+                    return render(request, "editProfile.html",
                                   {"user": user, "error_message": "New passwords do not match."})
             else:
-                return render(request, "edit_profile.html",
+                return render(request, "editProfile.html",
                               {"user": user, "error_message": "Old password is incorrect."})
 
         user.save()
         return HttpResponseRedirect(reverse("index"))
     else:
-        return render(request, "edit_profile.html", {"user": user})
+        return render(request, "editProfile.html", {"user": user})
 
 
 def doctors(request):
