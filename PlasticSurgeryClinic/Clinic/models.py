@@ -29,6 +29,9 @@ class Nurse(User):
     profile_picture = models.CharField(max_length=512, null=True, blank=True)
     working_shift = models.CharField(max_length=8, choices=[('M', 'Morning'), ('E', 'Evening'), ('N', 'Night')], null=True)
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
 class Patient(User):
     date_of_birth = models.DateField()
     history = models.CharField(max_length=255, null=True, blank=True)

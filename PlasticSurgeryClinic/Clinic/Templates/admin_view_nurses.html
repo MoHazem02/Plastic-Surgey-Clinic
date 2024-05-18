@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>View Doctors</title>
+    <title>View nurses</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -108,7 +108,7 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li><a href="../doctors"><i class="fa fa-sitemap"></i> Doctors</a></li>
+            <li><a href="../doctors"><i class="fa fa-sitemap"></i> Docotrs</a></li>
             <li><a href="../nurses"><i class="fa fa-sitemap"></i> Nurses</a></li>
             <li>
               <a href="../calendar">
@@ -130,7 +130,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Active Doctors
+            Active nurses
           </h1>
           <ol class="breadcrumb">
             <li><a href="../admin"><i class="fa fa-dashboard"></i> Admin</a></li>
@@ -144,7 +144,7 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Doctors</h3>
+                  <h3 class="box-title">nurses</h3>
                   <div class="box-tools">
                     <div class="input-group">
                       <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
@@ -158,18 +158,14 @@
                   <table class="table table-hover">
                     <tr>
                       <th>ID</th>
-                      <th>Doctor Name</th>
+                      <th>Nurse Name</th>
                       <th>Department</th>
-                      <th>Rating</th>
-                      <th>Medical Degree</th>
                     </tr>
-                    {% for doctor in doctors %}
+                    {% for nurse in nurses %}
                     <tr>
-                      <td>{{ doctor.id }}</td>
-                      <td>{{ doctor }}</td>
-                      <td>{{ doctor.department }}</td>
-                      <td><span class="label label-success">{{ doctor.rating }}</span></td>
-                      <td>{{ doctor.medical_degree }}</td>
+                      <td>{{ nurse.id }}</td>
+                      <td>{{ nurse }}</td>
+                      <td>{{ nurse.department }}</td>
                     </tr>
                     {% empty %}
                     <tr>
@@ -183,9 +179,9 @@
                     
                   </table>
                   <td>
-                    <a href="../Add_Staff" class="btn btn-block btn-success btn-lg" style="width:25%; margin-top: 20px; margin-left: auto;
+                    <a href="../Add_Staff_Nurses" class="btn btn-block btn-success btn-lg" style="width:25%; margin-top: 20px; margin-left: auto;
                     margin-right: auto;
-                    display: block;">Add Doctor
+                    display: block;">Add nurse
                     </a>
                   </td>
                 </div><!-- /.box-body -->

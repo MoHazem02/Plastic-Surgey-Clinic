@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import User, Doctor, Patient, Nurse, Appointment, Department
-import datetime
+import datetime, requests
 # Create your views here.
 
 def index(request):
@@ -124,25 +124,9 @@ def doctor_view(request):
 def nurse_view(request):
     if not request.user.is_authenticated:
         return render(request, "login.html")
-    if request.method == "POST":
-        time = request.POST.get('time')
-        date = request.POST.get('date')
-        doctor = Doctor.objects.get(pk = request.POST.get('doctor'))  
-        patient = Patient.objects.get(id = request.POST.get('id'))
-        
-        app = Appointment.objects.create(patient=patient, time=time, date=date, doctor=doctor)
-        app.save()
 
-    Doctors = Doctor.objects.all()
-    today = datetime.date.today()
-
-    Appointments = Appointment.objects.filter(date=today)
-
-    dict = {
-        'doctors': Doctors,
-        'appointments': Appointments
-    }
-    return render(request, "nurseportal.html", dict)
+    nurse = Nurse.objects.get(pk = request.user.id)
+    return render(request, "nurseportal.html", {"nurse": nurse})
 
 def admin(request):
     if not request.user.is_authenticated:
@@ -158,9 +142,32 @@ def admin(request):
 def edit_profile(request):
     if not request.user.is_authenticated:
         return render(request, "login.html")
+    user = request.user
     if request.method == "POST":
-        pass
-    return render(request, "editProfile.html")
+        user.email = request.POST.get("email", user.email)
+        old_password = request.POST.get("old_password")
+        new_password = request.POST.get("new_password")
+        confirm_password = request.POST.get("confirm_password")
+        
+        if old_password and new_password and confirm_password:
+            if user.check_password(old_password):
+                if new_password == confirm_password:
+                    user.set_password(new_password)
+                    user.save()
+                    logout(request)
+                    return HttpResponseRedirect(reverse("staff_login"))
+                else:
+                    return render(request, "edit_profile.html",
+                                  {"user": user, "error_message": "New passwords do not match."})
+            else:
+                return render(request, "edit_profile.html",
+                              {"user": user, "error_message": "Old password is incorrect."})
+
+        user.save()
+        return HttpResponseRedirect(reverse("index"))
+    else:
+        return render(request, "edit_profile.html", {"user": user})
+
 
 def doctors(request):
     if request.method == "POST":
@@ -168,6 +175,13 @@ def doctors(request):
     else:
         doctors = Doctor.objects.all()
         return render(request, "admin_view_doctors.html", {"doctors": doctors})
+    
+def nurses(request):
+    if request.method == "POST":
+        pass
+    else:
+        nurses = Nurse.objects.all()
+        return render(request, "admin_view_nurses.html", {"nurses": nurses})
 
 def add_staff(request):
     if request.method == "POST":
@@ -196,3 +210,48 @@ def add_staff(request):
         return HttpResponseRedirect(reverse("view doctors"))
     else:
         return render(request, "add-staff.html")
+
+def add_nurses(request):
+    if request.method == "POST":
+        fName = request.POST["fname"]
+        LName = request.POST["lname"]
+        username = request.POST["uname"]
+        email = request.POST["email"]
+        password = request.POST["password"]
+        profile_pic = request.POST["image_link"]
+        gender = request.POST["gender"]
+        department = Department.objects.get(pk=int(request.POST.get('dept')))
+        workingShift = request.POST.get('workingShift')
+        shiftOptions = {"Morning": 'M', "Evening": 'E', "Night": 'N'}
+        chosenShift = shiftOptions[workingShift]
+
+        # Attempt to create new user
+        try:
+            nurse = Nurse.objects.create_user(role="NURSE", first_name=fName, last_name=LName, username= username, password=password, email=email, 
+                                                  sex = "M" if gender == "Male" else "F", department=department, working_shift=chosenShift, profile_picture=profile_pic)
+            nurse.save()
+        except IntegrityError:
+            return render(request, "register.html", {
+                "message": "Username already taken."
+            })
+        return HttpResponseRedirect(reverse("view nurses"))
+    else:
+        return render(request, "add-staff-nurses.html")
+
+def disease_info(request):
+    query = request.GET.get('query', 'COVID-19').lower()
+    if query == 'covid-19':
+        url = "https://disease.sh/v3/covid-19/continents"
+    elif query == 'influenza':
+        url = "https://disease.sh/v3/influenza/cdc/ILINet"
+    else:
+        return JsonResponse({'error': 'Invalid query'}, status=400)
+
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+    else:
+        return JsonResponse({'error': 'Failed to retrieve data'}, status=response.status_code)
+
+    return render(request, 'disease_info.html', {'disease_data': data, 'query': query})
+

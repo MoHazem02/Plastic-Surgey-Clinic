@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Disease Statistics</title>
+</head>
+<body>
+    <h1>Disease Statistics</h1>
+    <form method="get" action="{% url 'disease_info' %}">
+        <input type="text" name="query" placeholder="Enter 'COVID-19' or 'Influenza'" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if disease_data %}
+        {% if query == 'covid-19' %}
+            <h2>COVID-19 Statistics by Continent</h2>
+            <ul>
+                {% for continent in disease_data %}
+                    <li>
+                        <strong>Continent:</strong> {{ continent.continent }}<br>
+                        <strong>Cases:</strong> {{ continent.cases }}<br>
+                        <strong>Deaths:</strong> {{ continent.deaths }}<br>
+                        <strong>Recovered:</strong> {{ continent.recovered }}<br>
+                        <strong>Active Cases:</strong> {{ continent.active }}<br>
+                        <strong>Critical Cases:</strong> {{ continent.critical }}<br>
+                        <strong>Tests:</strong> {{ continent.tests }}<br>
+                        <strong>Population:</strong> {{ continent.population }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% elif query == 'influenza' %}
+            <h2>Influenza Statistics (CDC ILINet)</h2>
+            <ul>
+                {% for entry in disease_data.data %}
+                    <li>
+                        <strong>Week:</strong> {{ entry.week }}<br>
+                        <strong>Age 0-4:</strong> {{ entry.age_0_4 }}<br>
+                        <strong>Age 5-24:</strong> {{ entry.age_5_24 }}<br>
+                        <strong>Age 25-49:</strong> {{ entry.age_25_49 }}<br>
+                        <strong>Age 50-64:</strong> {{ entry.age_50_64 }}<br>
+                        <strong>Age 64+:</strong> {{ entry.age_64_plus }}<br>
+                        <strong>Total ILI:</strong> {{ entry.totalILI }}<br>
+                        <strong>Total Patients:</strong> {{ entry.totalPatients }}<br>
+                        <strong>Percent Unweighted ILI:</strong> {{ entry.percentUnweightedILI }}<br>
+                        <strong>Percent Weighted ILI:</strong> {{ entry.percentWeightedILI }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% else %}
+        <p>No data available.</p>
+    {% endif %}
+</body>
+</html>
