@@ -168,7 +168,6 @@ def edit_profile(request):
     else:
         return render(request, "editProfile.html", {"user": user})
 
-
 def doctors(request):
     if request.method == "POST":
         pass
@@ -239,19 +238,21 @@ def add_nurses(request):
         return render(request, "add-staff-nurses.html")
 
 def disease_info(request):
-    query = request.GET.get('query', 'COVID-19').lower()
-    if query == 'covid-19':
-        url = "https://disease.sh/v3/covid-19/continents"
-    elif query == 'influenza':
-        url = "https://disease.sh/v3/influenza/cdc/ILINet"
-    else:
-        return JsonResponse({'error': 'Invalid query'}, status=400)
+    if request.method == 'POST':
+        query = request.POST["inputDisease"].lower()
+        if query == 'covid-19':
+            url = "https://disease.sh/v3/covid-19/continents"
+        elif query == 'influenza':
+            url = "https://disease.sh/v3/influenza/cdc/ILINet"
+        else:
+            return JsonResponse({'error': 'Invalid query'}, status=400)
 
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+        else:
+            return JsonResponse({'error': 'Failed to retrieve data'}, status=response.status_code)
+        return render(request, 'disease_info.html', {'disease_data': data, 'query': query})
     else:
-        return JsonResponse({'error': 'Failed to retrieve data'}, status=response.status_code)
-
-    return render(request, 'disease_info.html', {'disease_data': data, 'query': query})
+        return render(request, 'disease_info.html')
 

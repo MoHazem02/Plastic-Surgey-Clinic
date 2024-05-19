@@ -74,16 +74,19 @@
              </div>
           </nav>
           <div class="serch-bar">
+            <form method="post" action= "{%url 'disease info' %}">
+               {% csrf_token %}
              <div id="custom-search-input">
                 <div class="input-group col-md-12">
-                   <input type="text" class="form-control input-lg" placeholder="'COVID-19'/'Influenza'" required>
+                   <input type="text" class="form-control input-lg" placeholder="Disease Name" name="inputDisease" required>
                    <span class="input-group-btn">
-                   <button class="btn btn-info btn-lg" type="button">
+                   <button class="btn btn-info btn-lg" type="submit">
                    <i class="fa fa-search" aria-hidden="true"></i>
                    </button>
                    </span>
                 </div>
              </div>
+            </form>
           </div>
        </div>
     </div>
@@ -143,8 +146,7 @@
                                         <th>Age 65+</th>
                                         <th>Total ILI</th> 
                                         <th>Total Patients:</th> 
-                                        <th>Percent Unweighted ILI</th>
-                                        <th>Percent Weighted ILI</th> 
+                                        <th>ILI Death Percentage</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -158,8 +160,7 @@
                                             <td>{{ entry.age_64_plus }}</td>
                                             <td>{{ entry.totalILI }}</td>
                                             <td>{{ entry.totalPatients }}</td>
-                                            <td>{{ entry.percentUnweightedILI }}</td>
-                                            <td>{{ entry.percentWeightedILI }}</td>
+                                            <td>{{ entry.percentUnweightedILI }}%</td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>
