@@ -16,7 +16,7 @@
               
                    <h3><span>+</span> Book Appointment</h3>
                    <div class="form">
-                      <form method = "post" action = "{%url 'patient' %}">
+                      <form method = "POST" action = "{%url 'patient' %}">
                         {% csrf_token %}
                          <fieldset>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -82,13 +82,13 @@
       </div>
       
      <!-- end section -->
-     <div id="Instructions" class="section wow fadeIn">     
+     <div class="section wow fadeIn">     
               <div id= "View" class="container">
             <!-- Appointments Section -->
             
             <!-- Table for Doctor's Appointments -->
             <div class="blue-container">
-               <h2>Upcoming Appointments</h2>
+               <h1>Upcoming Appointments</h1>
                <form method = "post" action = "{%url 'cancel' %}">
                 {% csrf_token %}
                <table id="table" class="appointments-table">
@@ -117,8 +117,7 @@
            </div>
 
            <div class="blue-container">
-              <h2>Previous Appointments</h2>
-              <form method = "post" action = "">
+              <h1>Previous Appointments</h1>
                <table id="table" class="appointments-table">
                    <thead>
                        <tr>
@@ -131,28 +130,48 @@
                    </thead>
                    <tbody>
                      {% for item in past_app %}
-                       <tr>
-                           <td>{{item.id}}</td>
-                           <td>{{item.date}}</td>
-                           <td>{{item.time}}</td>
-                           <td>Dr. {{item.doctor.first_name}} {{item.doctor.last_name}}</td>
-                           <td style="text-align: center;"><button id="viewbutton" type="submit" name="appointment_id" value="{{item.id}}" class="btn btn-brd">View</button></td>
-                           <script>
-                              document.getElementById("viewbutton").addEventListener("click", function() {
-                               // Open a popup page
-                               var popup = window.open("", "Popup", "width=400,height=400");
-                               
-                               // Write content in the popup
-                               popup.document.write("<h1>Write your text here:</h1>");
-                               popup.document.write("<textarea rows='4' cols='50'></textarea>");
-                             });
-                             </script>
-                       </tr>
+                     <tr>
+                         <td>{{item.id}}</td>
+                         <td>{{item.date}}</td>
+                         <td>{{item.time}}</td>
+                         <td>Dr. {{item.doctor.first_name}} {{item.doctor.last_name}}</td>
+                         <td style="text-align: center;">
+                             <button 
+                                 id="viewbutton-{{item.id}}" 
+                                 type="button" 
+                                 class="btn btn-brd"
+                                 prescription="{{item.remarks}}">
+                                 View
+                             </button>
+                         </td>
+                     </tr>
+                     <script>
+                         document.getElementById("viewbutton-{{item.id}}").addEventListener("click", function() {
+                             // Get screen dimensions
+                             var screenWidth = window.screen.width;
+                             var screenHeight = window.screen.height;
+         
+                             // Calculate popup position
+                             var popupWidth = 400;
+                             var popupHeight = 200;
+                             var left = (screenWidth / 2) - (popupWidth / 2);
+                             var top = (screenHeight / 2) - (popupHeight / 2);
+         
+                             // Open a popup page centered on the screen
+                             var popup = window.open("", "Popup", "width=" + popupWidth + ",height=" + popupHeight + ",top=" + top + ",left=" + left);
+         
+                             // Retrieve the prescription from the data attribute
+                             var prescription = this.getAttribute('prescription');
+                             
+                             // Set popup title and write content in the popup
+                             popup.document.title = "Prescription";
+                             popup.document.write("<html><head><title>Prescription</title></head><body><textarea rows='10' cols='50'>" + prescription + "</textarea></body></html>");
+                         });
+                     </script>
                      {% endfor %}
-                   </tbody>
+                 </tbody>
                    
                </table>
-              </form>
 
            </div>
 
@@ -161,7 +180,7 @@
            
        </div>
     </div>
-   <div id="home" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4" style="background-image:url('../static/images/appointment.jpg');">
+   <div id="Instructions" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4" style="background-image:url('../static/images/appointment.jpg');">
 
         <div class="container">
            <div class="heading">
@@ -173,10 +192,10 @@
               <div class="col-md-6">
                
                  <div class="messagebox">
-                    <h4>Instructions</h4>
+                    <h1>Instructions</h1>
                     <h2>Making Your Experience Easier</h2>
                     <div>
-                        <ul>
+                        <ul style="color: black;">
                             <li>When you arrive, head to our reception desk - we're excited to welcome you!</li>
                             <li>Fill out any forms or paperwork needed - we promise to keep it simple!</li>
                             <li>Relax in our comfy waiting area until it's your turn - take a deep breath, you're in good hands!</li>

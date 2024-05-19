@@ -67,7 +67,7 @@ def register_patient(request):
 
 def cancel_appointment(request):
     if request.method == "POST":
-        appointment = Appointment.objects.get(pk = request.POST.get('appointment'))
+        appointment = Appointment.objects.get(pk = request.POST.get('appointment_id'))
         appointment.delete()
     return HttpResponseRedirect(reverse("patient"))
 
@@ -78,7 +78,7 @@ def patient_view(request):
         time = request.POST.get('time')
         date = request.POST.get('date')
         doctor = Doctor.objects.get(pk = request.POST.get('doctor'))  
-        patient = Patient.objects.get(id = request.POST.get('id'))
+        patient = Patient.objects.get(pk = request.user.id)
         
         app = Appointment.objects.create(patient=patient, time=time, date=date, doctor=doctor)
         app.save()
