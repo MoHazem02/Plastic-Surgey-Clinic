@@ -1,16 +1,185 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Disease Statistics</title>
-</head>
-<body>
-    <h1>Disease Statistics</h1>
-    <form method="get" action="{% url 'disease_info' %}">
-        <input type="text" name="query" placeholder="Enter 'COVID-19' or 'Influenza'" required>
-        <button type="submit">Search</button>
-    </form>
+<html lang="en">
+   <!-- Basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- Mobile Metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- Site Metas -->
+   <title>Haven Clinic</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <!-- Site Icons -->
+   <link rel="shortcut icon" href="../static/images/fevicon.ico.png" type="image/x-icon" />
+   <link rel="apple-touch-icon" href="../static/images/apple-touch-icon.png">
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+   <!-- Site CSS -->
+   <link rel="stylesheet" href="../static/style.css">
+   <!-- Colors CSS -->
+   <link rel="stylesheet" href="../static/css/colors.css">
+   <!-- ALL VERSION CSS -->
+   <link rel="stylesheet" href="../static/css/versions.css">
+   <!-- Responsive CSS -->
+   <link rel="stylesheet" href="../static/css/responsive.css">
+   <!-- Custom CSS -->
+   <link rel="stylesheet" href="../static/css/custom.css">
+   <!-- Modernizer for Portfolio -->
+   <script src="../static/js/modernizer.js"></script>
 
-    {% if disease_data %}
+   <link rel="stylesheet" href="../static/css/disease.css">
+   <link rel="stylesheet" href="../static/css/PatientPortal.css">
+
+
+
+   <!-- [if lt IE 9] -->
+   </head>
+   <body class="clinic_version">
+   <header>
+    <div class="header-top wow fadeIn">
+       <div class="container">
+          <a class="navbar-brand" href="index.html"><img src="../static/images/logo (3) .png" alt="image"></a>
+          <h1 id="TitleText">Disease Statistics</h1>
+          <div class="right-header">
+             <div class="header-info">
+                <div class="info-inner">
+                   <span class="icontop"><img src="../static/images/phone-icon.png" alt="#"></span>
+                   <span class="iconcont"><a href="tel:800 123 456">01062022113</a></span>	
+                </div>
+                <div class="info-inner">
+                   <span class="icontop"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                   <span class="iconcont"><a data-scroll>info@HavenClinic.com</a></span>	
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="header-bottom wow fadeIn">
+       <div class="container">
+          <nav class="main-menu">
+             <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i class="fa fa-bars" aria-hidden="true"></i></button>
+             </div>
+             
+             <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                  <li><a class="active" href="../">Home</a></li>
+                  <li><a data-scroll href="../nurse">View Appointments</a></li>
+                  <li><a data-scroll href="#appointmentbooking">Book Appointment</a></li>
+                  <li><a data-scroll href="../logout">Log Out</a></li>
+                
+                </ul>
+             </div>
+          </nav>
+          <div class="serch-bar">
+             <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                   <input type="text" class="form-control input-lg" placeholder="'COVID-19'/'Influenza'" required>
+                   <span class="input-group-btn">
+                   <button class="btn btn-info btn-lg" type="button">
+                   <i class="fa fa-search" aria-hidden="true"></i>
+                   </button>
+                   </span>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    
+ </header>
+
+<body>
+    <div id="service" class="services wow fadeIn">
+        <div class="container" style="display: flex; position: relative; margin-top: 10%; margin-right: 50%;">
+            {% if disease_data %}
+                {% if query == 'covid-19' %}
+                    <div class="blue-container">
+                        <h2>COVID-19 Statistics by Continent</h2>
+                        <form method="post">
+                            <table id="table" class="stats-table">
+                                <thead>
+                                    <tr>
+                                        <th>Continent</th>
+                                        <th>Cases</th>
+                                        <th>Deaths</th>
+                                        <th>Recovered</th>
+                                        <th>Active Cases</th>
+                                        <th>Critical Cases</th>
+                                        <th>Tests</th>
+                                        <th>Population</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for continent in disease_data %}
+                                        <tr>
+                                            <td>{{ continent.continent }}</td>
+                                            <td>{{ continent.cases }}</td>
+                                            <td>{{ continent.deaths }}</td>
+                                            <td>{{ continent.recovered }}</td>
+                                            <td>{{ continent.active }}</td>
+                                            <td>{{ continent.critical }}</td>
+                                            <td>{{ continent.tests }}</td>
+                                            <td>{{ continent.population }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                {% elif query == 'influenza' %}
+                    <div class="blue-container">
+                        <h2>Influenza Statistics (CDC ILINet)</h2>
+                        <form method="post">
+                            <table id="table" class="stats-table">
+                                <thead>
+                                    <tr>
+                                        <th>Week</th>
+                                        <th>Age 0-4</th>
+                                        <th>Age 5-24</th>
+                                        <th>Age 24-49</th>
+                                        <th>Age 50-64</th>
+                                        <th>Age 65+</th>
+                                        <th>Total ILI</th> 
+                                        <th>Total Patients:</th> 
+                                        <th>Percent Unweighted ILI</th>
+                                        <th>Percent Weighted ILI</th> 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for entry in disease_data.data %}
+                                        <tr>
+                                            <td>{{ entry.week }}</td>
+                                            <td>{{ entry.age_0_4 }}</td>
+                                            <td>{{ entry.age_5_24 }}</td>
+                                            <td>{{ entry.age_25_49 }}</td>
+                                            <td>{{ entry.age_50_64 }}</td>
+                                            <td>{{ entry.age_64_plus }}</td>
+                                            <td>{{ entry.totalILI }}</td>
+                                            <td>{{ entry.totalPatients }}</td>
+                                            <td>{{ entry.percentUnweightedILI }}</td>
+                                            <td>{{ entry.percentWeightedILI }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                {% else %}
+                    <p>No data available.</p>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    
+    
+           
+
+         
+           
+           
+    <!-- {% if disease_data %}
         {% if query == 'covid-19' %}
             <h2>COVID-19 Statistics by Continent</h2>
             <ul>
@@ -44,10 +213,87 @@
                         <strong>Percent Weighted ILI:</strong> {{ entry.percentWeightedILI }}
                     </li>
                 {% endfor %}
-            </ul>
-        {% endif %}
+            </ul> -->
+        <!-- {% endif %}
     {% else %}
         <p>No data available.</p>
-    {% endif %}
-</body>
-</html>
+    {% endif %} -->
+        <!-- </div>
+    </div> -->
+    <footer id="footer" class="footer-area wow fadeIn">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-4">
+                 <div class="logo padding">
+                    <a href=""><img src="images/logo (3) .png" alt=""></a>
+                    <p>Discover Radiance, Restore Confidence.</p>
+                 </div>
+              </div>
+              <div class="col-md-4">
+                 <div class="footer-info padding">
+                    <h3>CONTACT US</h3>
+                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> 15 Ahmed Oraby Street, El Mohandseen, Giza, Egypt.</p>
+                    <p><i class="fa fa-paper-plane" aria-hidden="true"></i> info@HavenClinicgmail.com</p>
+                    <p><i class="fa fa-phone" aria-hidden="true"></i> (+20) 1062022113</p>
+                 </div>
+              </div>
+              <div class="col-md-4">
+                 <div class="subcriber-info">
+                    <h3>SUBSCRIBE</h3>
+                    <p>Get healthy news, tip and solutions to your problems from our experts.</p>
+                    <div class="subcriber-box">
+                       <form id="mc-form" class="mc-form">
+                          <div class="newsletter-form">
+                             <input type="email" autocomplete="off" id="mc-email" placeholder="Email address" class="form-control" name="EMAIL">
+                             <button class="mc-submit" type="submit"><i class="fa fa-paper-plane"></i></button> 
+                             <div class="clearfix"></div>
+                             <!-- mailchimp-alerts Start -->
+                             <div class="mailchimp-alerts">
+                                <div class="mailchimp-submitting"></div>
+                                <!-- mailchimp-submitting end -->
+                                <div class="mailchimp-success"></div>
+                                <!-- mailchimp-success end -->
+                                <div class="mailchimp-error"></div>
+                                <!-- mailchimp-error end -->
+                             </div>
+                             <!-- mailchimp-alerts end -->
+                          </div>
+                       </form>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </footer>
+     <div class="copyright-area wow fadeIn">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-8">
+                 <div class="footer-text">
+                    <p>© 2024 HavenClinic. All Rights Reserved.</p>
+                 </div>
+              </div>
+              <div class="col-md-4">
+                 <div class="social">
+                    <ul class="social-links">
+                       <li><a href=""><i class="fa fa-rss"></i></a></li>
+                       <li><a href=""><i class="fa fa-facebook"></i></a></li>
+                       <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                       <li><a href=""><i class="fa fa-google-plus"></i></a></li>
+                       <li><a href=""><i class="fa fa-youtube"></i></a></li>
+                       <li><a href=""><i class="fa fa-pinterest"></i></a></li>
+                    </ul>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <!-- end copyrights -->
+     <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+     <!-- all js files -->
+     <script src="js/all.js"></script>
+     <!-- all plugins -->
+     <script src="js/custom.js"></script>
+  </body>
+    </html>
+    
