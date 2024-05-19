@@ -82,8 +82,8 @@
       </div>
       
      <!-- end section -->
-     <div id="home" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4" style="background-image:url('../static/images/appointment.jpg');">
-        <div id= "View" class="container">
+     <div id="Instructions" class="section wow fadeIn">     
+              <div id= "View" class="container">
             <!-- Appointments Section -->
             
             <!-- Table for Doctor's Appointments -->
@@ -91,7 +91,7 @@
                <h2>Upcoming Appointments</h2>
                <form method = "post" action = "{%url 'cancel' %}">
                 {% csrf_token %}
-               <table class="appointments-table">
+               <table id="table" class="appointments-table">
                    <thead>
                        <tr>
                            <th style="text-align: center;">Appointment ID</th>
@@ -118,7 +118,8 @@
 
            <div class="blue-container">
               <h2>Previous Appointments</h2>
-               <table class="appointments-table">
+              <form method = "post" action = "">
+               <table id="table" class="appointments-table">
                    <thead>
                        <tr>
                            <th>Appointment ID</th>
@@ -135,16 +136,33 @@
                            <td>{{item.date}}</td>
                            <td>{{item.time}}</td>
                            <td>Dr. {{item.doctor.first_name}} {{item.doctor.last_name}}</td>
-                           <td class="clickable">View</td>
+                           <td style="text-align: center;"><button id="viewbutton" type="submit" name="appointment_id" value="{{item.id}}" class="btn btn-brd">View</button></td>
+                           <script>
+                              document.getElementById("viewbutton").addEventListener("click", function() {
+                               // Open a popup page
+                               var popup = window.open("", "Popup", "width=400,height=400");
+                               
+                               // Write content in the popup
+                               popup.document.write("<h1>Write your text here:</h1>");
+                               popup.document.write("<textarea rows='4' cols='50'></textarea>");
+                             });
+                             </script>
                        </tr>
                      {% endfor %}
                    </tbody>
+                   
                </table>
+              </form>
+
+           </div>
+
+           
            </div>
            
        </div>
     </div>
-    <div id="Instructions" class="section wow fadeIn">
+   <div id="home" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4" style="background-image:url('../static/images/appointment.jpg');">
+
         <div class="container">
            <div class="heading">
               <span class="icon-logo"><img src="../static/images/icon-logo.png" alt="#"></span>
@@ -153,7 +171,8 @@
            <!-- end title -->
            <div class="row">
               <div class="col-md-6">
-                 <div class="message-box">
+               
+                 <div class="messagebox">
                     <h4>Instructions</h4>
                     <h2>Making Your Experience Easier</h2>
                     <div>
