@@ -1,0 +1,40 @@
+.messagebox h4 {
+   text-transform: uppercase;
+   padding: 0;
+   margin: 0 0 5px;
+   font-weight: 600;
+   letter-spacing: 0.5px;
+   font-size: 54px;
+   color: #000000;
+}
+.messagebox li {
+
+   color: rgb(0, 0, 0);
+   font-weight: bolder;
+   font-size: 20px;
+   text-transform: uppercase;
+   padding: 12px;
+
+}
+.blue-container {
+   background-color: #e0e9f1; /* Adjust the color as needed */
+   padding: 20px;
+   border-radius: 52px;
+   margin-top: 20px; /* Adjust spacing from the section heading */
+ }
+ .blue-container h2 {
+   font-size: 50px;
+   padding-top: 20px;
+   padding-bottom: 0px;
+ }
+#table{
+   margin-top: 10px;
+}
+#viewbutton{
+   background-color: rgb(5, 86, 117);
+   color:#e0e9f1
+}
+#viewbutton:hover{
+   background-color: rgb(67, 142, 172);
+   color:#e0e9f1
+}

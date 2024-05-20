@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+{% block body %}
+ <div id="home" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4" style="background-image:url('images/appointment.jpg');">
+    <div id= "View" class="container">
+        <!-- Appointments Section -->
+        
+        <!-- Table for Doctor's Appointments -->
+        <div class="blue-container">
+            <table class="appointments-table">
+                <thead>
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Patient ID</th>
+                        <th>Appointment ID</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Doctor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in appointments %}
+                        <tr>
+                            <td>{{item.patient.first_name}} {{item.patient.last_name}}</td>
+                            <td>{{item.patient.id}}</td>
+                            <td>{{item.id}}</td>
+                            <td>{{item.date}}</td>
+                            <td>{{item.time}}</td>
+                            <td>Dr. {{item.doctor.first_name}} {{item.doctor.last_name}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+    <div id="appointmentbooking" class="appointment-form">
+       <h3><span>+</span> Book Appointment</h3>
+       <div class="form">
+          <form method = "post" action = "{%url 'nurse' %}">
+            {% csrf_token %} 
+             <fieldset>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                   <div class="row">
+                      <div class="form-group">
+                         <input type="text" id="name" placeholder="Patient Name" name = "name" />
+                      </div>
+                   </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="row">
+                     <div class="form-group">
+                        <input type="text" id="name" placeholder="Patient ID" name = "id" />
+                     </div>
+                  </div>
+               </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 select-section">
+                   <div class="row">
+                      <div class="form-group">                     
+                           <input type="date" id="date_field" name="date">
+                      </div>
+                      <div class="form-group">
+                        <select class="form-control" id="timeSelect" name="time">
+                            <option>Time</option>
+                        </select>
+                    </div>
+                    
+                    <script>
+                        var select = document.getElementById("timeSelect");
+                    
+                        for (var hour = 9; hour <= 12; hour++) {
+                            select.options[select.options.length] = new Option(hour + ":00 AM", hour + ":00 AM");
+                        }
+                        for (var hour = 1; hour <= 9; hour++) {
+                            select.options[select.options.length] = new Option(hour + ":00 PM", hour + ":00 PM");
+                        }
+                    </script>
+                    
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                   <div class="row">
+                      <div class="form-group">
+                         <select class="form-control" name="doctor">
+                            <option>Doctor Name</option>
+                            {% for doctor in doctors %}
+                            <option value = "{{doctor.id}}"> {{doctor}}</option>
+                            {% endfor %}
+                         </select>
+                      </div>
+                   </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                   <div class="row">
+                      <div class="form-group">
+                         <textarea rows="4" id="textarea_message" class="form-control" placeholder="Your Message..."></textarea>
+                      </div>
+                   </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                   <div class="row">
+                      <div class="form-group">
+                         <div class="center"><button type="submit">Submit</button></div>
+                      </div>
+                   </div>
+                </div>
+             </fieldset>
+          </form>
+       </div>
+    </div>
+ </div>
+{% endblock %}

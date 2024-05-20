@@ -1,0 +1,232 @@
+{% extends "layout.html" %}
+<script>
+   document.addEventListener("DOMContentLoaded", function() {
+       document.querySelectorAll('.clickable-td').forEach(function(clickableTd) {
+           clickableTd.addEventListener('click', function() {
+               this.previousElementSibling.click();
+           });
+       });
+   });
+</script>
+{% block body %}
+
+      <div id="service" class="services wow fadeIn">
+        <div  class="container" style="display: flex; position: relative; margin-top: 10%; margin-right: 50%;">
+           <div id="appoint" class="row">
+              
+                   <h3><span>+</span> Book Appointment</h3>
+                   <div class="form">
+                      <form method = "POST" action = "{%url 'patient' %}">
+                        {% csrf_token %}
+                         <fieldset>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                               <div class="row">
+                                  <div class="form-group">
+                                     <input type="text" id="name"  value="{{user.first_name}} {{user.last_name}}" disabled/>
+                                  </div>
+                               </div>
+                            </div>
+                               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="row">
+                                   <div class="form-group">
+                                      <input type="text" placeholder="Patient Id" id="Patient ID" name = "id" value="{{user.id}}" disabled/>
+                                   </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 select-section">
+                               <div class="row">
+                                  <div class="form-group">
+                                     <input type="date" id="date_field" name="date">
+                                  </div>
+                                  <div class="form-group">
+                                    <select class="form-control" id="timeSelect" name="time">
+                                        <option>Time</option>
+                                        <option>Morning</option>
+                                        <option>Evening</option>
+                                        <option>Night</option>
+                                    </select>
+                                </div>
+                                
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                               <div class="row">
+                                  <div class="form-group">
+                                     <select class="form-control" name="doctor">
+                                        <option>Doctor Name</option>
+                                        {% for doctor in doctors %}
+                                          <option value = "{{doctor.id}}"> {{doctor}} -  {{doctor.department}}</option>
+                                        {% endfor %}
+                                     </select>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                               <div class="row">
+                                  <div class="form-group">
+                                     <textarea rows="4" id="textarea_message" class="form-control" placeholder="Your Message..."></textarea>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                               <div class="row">
+                                  <div class="form-group">
+                                     <div class="center"><button type="submit">Submit</button></div>
+                                  </div>
+                               </div>
+                            </div>
+                         </fieldset>
+                      </form>
+                   </div>
+                
+           </div>
+        </div>
+      </div>
+      
+     <!-- end section -->
+     <div class="section wow fadeIn">     
+              <div id= "View" class="container">
+            <!-- Appointments Section -->
+            
+            <!-- Table for Doctor's Appointments -->
+            <div class="blue-container">
+               <h1>Upcoming Appointments</h1>
+               <form method = "post" action = "{%url 'cancel' %}">
+                {% csrf_token %}
+               <table id="table" class="appointments-table">
+                   <thead>
+                       <tr>
+                           <th style="text-align: center;">Appointment ID</th>
+                           <th style="text-align: center;">Date</th>
+                           <th style="text-align: center;">Time</th>
+                           <th style="text-align: center;">Doctor</th>
+                           <th style="text-align: center;">Cancel</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                     {% for item in future_app %}
+                       <tr>
+                           <td>{{item.id}}</td>
+                           <td>{{item.date}}</td>
+                           <td>{{item.time}}</td>
+                           <td>{{item.doctor}}</td>
+                           <td style="text-align: center;"><button type="submit" name="appointment_id" value="{{item.id}}" class="btn btn-danger">Cancel</button></td>
+                       </tr>
+                     {% endfor %}
+                   </tbody>
+               </table>
+               </form>
+           </div>
+
+           <div class="blue-container">
+              <h1>Previous Appointments</h1>
+               <table id="table" class="appointments-table">
+                   <thead>
+                       <tr>
+                           <th>Appointment ID</th>
+                           <th>Date</th>
+                           <th>Time</th>
+                           <th>Doctor</th>
+                           <th>View Prescription</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                     {% for item in past_app %}
+                     <tr>
+                         <td>{{item.id}}</td>
+                         <td>{{item.date}}</td>
+                         <td>{{item.time}}</td>
+                         <td>Dr. {{item.doctor.first_name}} {{item.doctor.last_name}}</td>
+                         <td style="text-align: center;">
+                             <button 
+                                 id="viewbutton-{{item.id}}" 
+                                 type="button" 
+                                 class="btn btn-brd"
+                                 prescription="{{item.remarks}}">
+                                 View
+                             </button>
+                         </td>
+                     </tr>
+                     <script>
+                         document.getElementById("viewbutton-{{item.id}}").addEventListener("click", function() {
+                             // Get screen dimensions
+                             var screenWidth = window.screen.width;
+                             var screenHeight = window.screen.height;
+         
+                             // Calculate popup position
+                             var popupWidth = 400;
+                             var popupHeight = 200;
+                             var left = (screenWidth / 2) - (popupWidth / 2);
+                             var top = (screenHeight / 2) - (popupHeight / 2);
+         
+                             // Open a popup page centered on the screen
+                             var popup = window.open("", "Popup", "width=" + popupWidth + ",height=" + popupHeight + ",top=" + top + ",left=" + left);
+         
+                             // Retrieve the prescription from the data attribute
+                             var prescription = this.getAttribute('prescription');
+                             
+                             // Set popup title and write content in the popup
+                             popup.document.title = "Prescription";
+                             popup.document.write("<html><head><title>Prescription</title></head><body><textarea rows='10' cols='50'>" + prescription + "</textarea></body></html>");
+                         });
+                     </script>
+                     {% endfor %}
+                 </tbody>
+                   
+               </table>
+
+           </div>
+
+           
+           </div>
+           
+       </div>
+    </div>
+   <div id="Instructions" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4" style="background-image:url('../static/images/appointment.jpg');">
+
+        <div class="container">
+           <div class="heading">
+              <span class="icon-logo"><img src="../static/images/icon-logo.png" alt="#"></span>
+              <h2>Haven Clinic</h2>
+           </div>
+           <!-- end title -->
+           <div class="row">
+              <div class="col-md-6">
+               
+                 <div class="messagebox">
+                    <h1>Instructions</h1>
+                    <h2>Making Your Experience Easier</h2>
+                    <div>
+                        <ul style="color: black;">
+                            <li>When you arrive, head to our reception desk - we're excited to welcome you!</li>
+                            <li>Fill out any forms or paperwork needed - we promise to keep it simple!</li>
+                            <li>Relax in our comfy waiting area until it's your turn - take a deep breath, you're in good hands!</li>
+                            <li>Follow our friendly staff to your treatment room - it's your time to shine!</li>
+                            <li>Get ready for your consultation or procedure with guidance from our caring team.</li>
+                            <li>Feel free to share any worries or questions with your healthcare provider - we're here to listen!</li>
+                            <li>Follow the easy pre-procedure or post-procedure steps given by your healthcare provider.</li>
+                            <li>Don't forget any prescribed medications or follow-up appointments - we'll help you stay on track!</li>
+                            <li>Stick to any dietary or lifestyle tips from your healthcare provider - your health is our priority!</li>
+                            <li>Keep things clean and tidy while you're here - we all appreciate a fresh environment!</li>
+                            <li>Respect everyone's privacy and comfort - we're all in this together!</li>
+                            <li>Share your thoughts or experiences with us - your feedback means the world!</li>
+                        </ul>
+                    </div>
+                    
+
+              
+                <a href="#Instructions" data-scroll class="btn btn-light btn-radius btn-brd grd1 effect-1">Learn More</a>
+                 </div>
+                 <!-- end messagebox -->
+                </div>
+                <!-- end col -->
+                <div class="col-md-6">
+                   <div class="post-media wow fadeIn">
+                      <img src="../static/images/about_04.jpg" alt="" class="img-responsive">
+                   </div>
+                   <!-- end media -->
+                </div>
+                <!-- end col -->
+             </div>
+        </div>
+    </div>
+    
+{% endblock %}

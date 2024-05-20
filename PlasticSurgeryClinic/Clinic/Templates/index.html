@@ -1,12 +1,353 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-</head>
-<body>
-    Hello
-</body>
-</html>
+{% extends "layout.html" %}
+{% block body %}
+      <div id="home" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4" style="background-image:url('images/slider-bg.png');">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12 col-sm-12">
+                  <div class="text-contant">
+                     <h2>
+                        <span class="center"><span class="icon"><img src="../static/images/icon-logo.png" alt="#" /></span></span>
+                        <a href="" class="typewrite" data-period="2000" data-type='[ "Welcome to Haven", "We Care Your Health&Beauty", "We are the Experts!" ]'>
+                        <span class="wrap"></span>
+                        </a>
+                     </h2>
+                  </div>
+               </div>
+            </div>
+            <!-- end row -->
+         </div>
+         <!-- end container -->
+      </div>
+      <!-- end section -->
+      <div id="time-table" class="time-table-section">
+         <div class="container">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+               <div class="row">
+                  <div class="service-time one" style="background:#2895f1;">
+                     <span class="info-icon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                     <h3>Remote Consultations</h3>
+                     <p>Comprehensive remote consultations tailored to your needs; expertise, personalized care, and comfort prioritized at Haven Clinic</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+               <div class="row">
+                  <div class="service-time middle" style="background:#0071d1;">
+                     <span class="info-icon"><i class="fa fa-clock-o" aria-hidden="true"></i></span> 
+                     <h3>Working Hours</h3>
+                     <div class="time-table-section">
+                        <ul>
+                           <li><span class="left">Sunday - Thursday</span><span class="right">8.00 – 18.00</span></li>
+                           <li><span class="left">Friday</span><span class="right">8.00 – 16.00</span></li>
+                           <li><span class="left">Saturday</span><span class="right">8.00 – 13.00</span></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+               <div class="row">
+                  <div class="service-time three" style="background:#0060b1;">
+                     <span class="info-icon"><i class="fa fa-hospital-o" aria-hidden="true"></i></span>
+                     <h3>Clinic Timetable</h3>
+                     <p>Find your suitable appointments through our website.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="about" class="section wow fadeIn">
+         <div class="container">
+            <div class="heading">
+               <span class="icon-logo"><img src="../static/images/icon-logo.png" alt="#"></span>
+               <h2>Haven Clinic</h2>
+            </div>
+            <!-- end title -->
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="message-box">
+                     <h4>What We Do</h4>
+                     <h2>Exploring Your Beauty</h2>
+                     <p class="lead">Welcome to Haven Clinic, your comprehensive destination for beauty, wellness, and transformation. Situated as an oasis of rejuvenation in our community, Haven Clinic offers a sanctuary where artistry meets expertise to enhance your beauty, restore your confidence, and revitalize your well-being..</p>
+                     <p> Your sanctuary for beauty, surgery, and hair restoration. Our expert team offers personalized care to enhance your natural beauty, restore confidence, and revitalize hair. Experience transformation in a serene environment where wellness meets innovation.
+
+                     </p>
+                     <a href="#services" data-scroll class="btn btn-light btn-radius btn-brd grd1 effect-1">Learn More</a>
+                  </div>
+                  <!-- end messagebox -->
+               </div>
+               <!-- end col -->
+               <div class="col-md-6">
+                  <div class="post-media wow fadeIn">
+                     <img src="../static/images/about_03.jpg" alt="" class="img-responsive">
+                     <a href="http://www.youtube.com/watch?v=nrJtHemSPW4" data-rel="prettyPhoto[gal]" class="playbutton"><i class="flaticon-play-button"></i></a>
+                  </div>
+                  <!-- end media -->
+               </div>
+               <!-- end col -->
+            </div>
+            <!-- end row -->
+            <hr class="hr1">
+            <div class="row">
+               <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="service-widget">
+                     <div class="post-media wow fadeIn">
+                        <a href="../static/images/clinic_01.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+                        <img src="../static/images/clinic_01.jpg" alt="" class="img-responsive">
+                     </div>
+                     <h3>Digital Checkups</h3>
+                  </div>
+                  <!-- end service -->
+               </div>
+               <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="service-widget">
+                     <div class="post-media wow fadeIn">
+                        <a href="../static/images/clinic_02.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+                        <img src="../static/images/clinic_02.jpg" alt="" class="img-responsive">
+                     </div>
+                     <h3>Hygienic Operating Room</h3>
+                  </div>
+                  <!-- end service -->
+               </div>
+               <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="service-widget">
+                     <div class="post-media wow fadeIn">
+                        <a href="../static/images/clinic_03.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+                        <img src="../static/images/clinic_03.jpg" alt="" class="img-responsive">
+                     </div>
+                     <h3>Specialist Physicians</h3>
+                  </div>
+                  <!-- end service -->
+               </div>
+               <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="service-widget">
+                     <div class="post-media wow fadeIn">
+                        <a href="../static/images/clinic_05.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+                        <img src="../static/images/clinic_05.jpg" alt="" class="img-responsive">
+                     </div>
+                     <h3>Safe Environment</h3>
+                  </div>
+                  <!-- end service -->
+               </div>
+            </div>
+            <!-- end row -->
+         </div>
+         <!-- end container -->
+      </div>
+      <div id="service" class="services wow fadeIn">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                  <div class="inner-services">
+                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="serv">
+                           <span class="icon-service"><img src="../static/images/service-icon1.png" alt="#" /></span>
+                           <h4>PREMIUM FACILITIES</h4>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="serv">
+                           <span class="icon-service"><img src="../static/images/service-icon2.png" alt="#" /></span>
+                           <h4>PRIVATE ROOMS</h4>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="serv">
+                           <span class="icon-service"><img src="../static/images/service-icon3.png" alt="#" /></span>
+                           <h4>DETAILED SPECIALIST</h4>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="serv">
+                           <span class="icon-service"><img src="../static/images/service-icon4.png" alt="#" /></span>
+                           <h4>PREMIUM PRODUCTS</h4>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="serv">
+                           <span class="icon-service"><img src="../static/images/service-icon5.png" alt="#" /></span>
+                           <h4>FINE INFRASTRUCTURE</h4>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="serv">
+                           <span class="icon-service"><img src="../static/images/service-icon6.png" alt="#" /></span>
+                           <h4>CUSTOMIZED TREATMENT PLANS</h4>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </div>
+         </div>
+      </div>
+      <!-- end section -->
+	  
+	  <!-- doctor -->
+	  
+	  <div id="doctors" class="parallax section db" data-stellar-background-ratio="0.4" style="background:#fff;" data-scroll-id="doctors" tabindex="-1">
+        <div class="container">
+		
+		<div class="heading">
+               <span class="icon-logo"><img src="../static/images/icon-logo.png" alt="#"></span>
+               <h2>Haven Clinic</h2>
+            </div>
+
+            <div class="row dev-list text-center">
+               {% for doctor in doctors %}
+                   {% if forloop.counter0|divisibleby:3 and not forloop.first %}
+                       </div><!-- end row -->
+                       <div class="row dev-list text-center">
+                   {% endif %}
+                   <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeIn;">
+                       <div class="widget clearfix">
+                           <img src="{{ doctor.profile_picture }}" alt="" class="img-responsive img-rounded">
+                           <div class="widget-title">
+                               <h3>{{doctor}}</h3>
+                               <small>{{ doctor.department }}</small>
+                           </div>
+                           <!-- end title -->
+                           <p>{{doctor.medical_degree}}</p>
+           
+                           <div class="footer-social">
+                               <a href="#" class="btn grd1"><i class="fa fa-facebook"></i></a>
+                               <a href="#" class="btn grd1"><i class="fa fa-github"></i></a>
+                               <a href="#" class="btn grd1"><i class="fa fa-twitter"></i></a>
+                               <a href="#" class="btn grd1"><i class="fa fa-linkedin"></i></a>
+                           </div>
+                       </div><!--widget -->
+                   </div><!-- end col -->
+               {% endfor %}
+           </div><!-- end row -->
+           
+        </div><!-- end container -->
+    </div>
+	  
+	  
+	  <!-- end doctor section -->
+	  
+      <div id="testimonials" class="section wb wow fadeIn">
+         <div class="container">
+            <div class="heading">
+               <span class="icon-logo"><img src="../static/images/icon-logo.png" alt="#"></span>
+               <h2>Testimonials</h2>
+            </div>
+            <!-- end title -->
+            <div class="row">
+               <div class="col-md-6 col-sm-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
+                  <div class="testimonial clearfix">
+                     <div class="desc">
+                        <h3><i class="fa fa-quote-left"></i> The amazing clinic! Wonderful Support!</h3>
+                        <p class="lead">I struggled with acne for years, trying various treatments with little success. Then I found Dr. Bayliss at the dermatology clinic. Her personalized approach and expertise in skincare completely transformed my complexion. I finally have clear, glowing skin that I'm proud of. Thank you, Haven Clinic</p>
+                     </div>
+                     <div class="testi-meta">
+                        <img src="../static/images/testi_01.png" alt="" class="img-responsive alignleft">
+                        <h4>James Fernando <small>- Manager of Racer</small></h4>
+                     </div>
+                     <!-- end testi-meta -->
+                  </div>
+                  <!-- end testimonial -->
+               </div>
+               <!-- end col -->
+               <div class="col-md-6 col-sm-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s">
+                  <div class="testimonial clearfix">
+                     <div class="desc">
+                        <h3><i class="fa fa-quote-left"></i> Thanks for Help us!</h3>
+                        <p class="lead">"I've been a patient at the Haven clinic for several years now, and I couldn't be happier with the care I receive. The entire staff is friendly, professional, and genuinely cares about their patients' well-being. Whether it's a routine skin check or treatment for a specific concern, I always feel confident in the expertise of the dermatologists here.</p>
+                     </div>
+                     <div class="testi-meta">
+                        <img src="../static/images/testi_02.png" alt="" class="img-responsive alignleft">
+                        <h4>Andrew Atkinson <small>- Life Manager</small></h4>
+                     </div>
+                     <!-- end testi-meta -->
+                  </div>
+                  <!-- end testimonial -->
+               </div>
+               <!-- end col -->
+            </div>
+            <!-- end row -->
+            <hr class="invis">
+            <div class="row">
+               <div class="col-md-6 col-sm-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.6s">
+                  <div class="testimonial clearfix">
+                     <div class="desc">
+                        <h3><i class="fa fa-quote-left"></i> A life Changing Experience</h3>
+                        <p class="lead">Finding a reliable dermatology clinic can be challenging, but I hit the jackpot with this one. From the moment I walked in, I was impressed by the clean and welcoming environment.</p>
+                     </div>
+                     <div class="testi-meta">
+                        <img src="../static/images/testi_03.png" alt="" class="img-responsive alignleft">
+                        <h4>Amanda DOE <small>- Manager of Racer</small></h4>
+                     </div>
+                     <!-- end testi-meta -->
+                  </div>
+                  <!-- end testimonial -->
+               </div>
+               <!-- end col -->
+               <div class="col-md-6 col-sm-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.8s">
+                  <div class="testimonial clearfix">
+                     <div class="desc">
+                        <h3><i class="fa fa-quote-left"></i> Really impressed</h3>
+                        <p class="lead">I can't say enough good things about the dermatology clinic. Not only did they diagnose and treat my skin condition accurately, but they also educated me on how to prevent future issues.</p>
+                     </div>
+                     <div class="testi-meta">
+                        <img src="../static/images/testi_01.png" alt="" class="img-responsive alignleft">
+                        <h4>Martin Johnson <small>- Founder of Goosilo</small></h4>
+                     </div>
+                     <!-- end testi-meta -->
+                  </div>
+                  <!-- end testimonial -->
+               </div>
+               <!-- end col -->
+            </div>
+            <!-- end row -->
+         </div>
+         <!-- end container -->
+      </div>
+      <!-- end section -->
+    
+      <footer id="footer" class="footer-area wow fadeIn">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="logo padding">
+                     <a href=""><img src="../static/images/logo (3) .png" alt=""></a>
+                     <p>Discover Radiance, Restore Confidence.</p>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="footer-info padding">
+                     <h3>CONTACT US</h3>
+                     <p><i class="fa fa-map-marker" aria-hidden="true"></i> 15 Ahmed Oraby Street, El Mohandseen, Giza, Egypt.</p>
+                     <p><i class="fa fa-paper-plane" aria-hidden="true"></i> info@HavenClinicgmail.com</p>
+                     <p><i class="fa fa-phone" aria-hidden="true"></i> (+20) 1062022113</p>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="subcriber-info">
+                     <h3>SUBSCRIBE</h3>
+                     <p>Get healthy news, tip and solutions to your problems from our experts.</p>
+                     <div class="subcriber-box">
+                        <form id="mc-form" class="mc-form">
+                           <div class="newsletter-form">
+                              <input type="email" autocomplete="off" id="mc-email" placeholder="Email address" class="form-control" name="EMAIL">
+                              <button class="mc-submit" type="submit"><i class="fa fa-paper-plane"></i></button> 
+                              <div class="clearfix"></div>
+                              <!-- mailchimp-alerts Start -->
+                              <div class="mailchimp-alerts">
+                                 <div class="mailchimp-submitting"></div>
+                                 <!-- mailchimp-submitting end -->
+                                 <div class="mailchimp-success"></div>
+                                 <!-- mailchimp-success end -->
+                                 <div class="mailchimp-error"></div>
+                                 <!-- mailchimp-error end -->
+                              </div>
+                              <!-- mailchimp-alerts end -->
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+{% endblock %}

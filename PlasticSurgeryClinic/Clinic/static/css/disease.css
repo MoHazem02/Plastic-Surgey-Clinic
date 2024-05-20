@@ -1,0 +1,84 @@
+#TitleText{
+    color:black;
+    padding-top: 20px;
+}
+
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.stats-table th, .stats-table td {
+    border: 1px solid #ffffff;
+    padding: 8px;
+    text-align: left;
+}
+
+.stats-table th {
+    background-color: #ffffff;
+}
+
+.stats-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.stats-table tr:hover {
+    background-color: #e9e9e9;
+}
+
+/** search bar **/
+#customsearch-input {
+    padding: 0;
+    border: none;
+    border-radius: 100px;
+    background-color: #fff;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+#customsearch-input .form-control.input-lg {
+    border-radius: 50px;
+    overflow: hidden;
+    border: yellow;
+    float: left;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0px 25px 0 25px;
+    color: #ad0a0a;
+    width: 200px;
+    height: 40px;
+}
+#customsearch-input button {
+    margin: 0;
+    background: none;
+    box-shadow: none;
+    color: #222;
+    padding: 0;
+}
+#customsearch-input button i {
+    font-size: 18px;
+    color: #333;
+}
+#customsearch-input input{
+    border: 0;
+    box-shadow: none;
+}
+#customsearch-input button{
+    margin: 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 15px 0 15px;
+    border-left: solid 1px #ccc;
+}
+
+#customsearch-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input .glyphicon-search{
+    font-size: 23px;
+}
